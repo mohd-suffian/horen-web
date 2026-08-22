@@ -1,0 +1,56 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@400;500;600;700&display=swap');
+
+:root {
+  --teal:       #1A8C8C;
+  --teal-light: #5DC6C6;
+  --teal-pale:  #EBF7F7;
+  --dark:       #1a2a2a;
+  --muted:      #6B7280;
+  --border:     #E9ECF0;
+  --bg-soft:    #F7F8FA;
+  --font-serif: 'Fraunces', serif;
+  --font-sans:  'Outfit', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--dark);
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 10px;
+}
+
+/* Marquee animation */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+/* Prose styles for blog */
+.prose h2 { font-family: var(--font-serif); margin-top: 2rem; }
+.prose p  { color: var(--muted); line-height: 1.8; }
