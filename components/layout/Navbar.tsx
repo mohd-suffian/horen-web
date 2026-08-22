@@ -19,8 +19,12 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 h-16 flex items-center px-6 md:px-10">
       <div className="max-w-6xl mx-auto w-full flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="font-serif text-2xl text-teal">
-          HOREN
+        <Link href="/" className="flex items-center">
+          <img
+            src="/horen/v2/images/horen-logo2.png"
+            alt="HOREN Training"
+            className="h-12 w-auto"
+          />
         </Link>
 
         {/* Desktop links */}
