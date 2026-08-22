@@ -25,7 +25,7 @@ export default function ContactPage() {
     e.preventDefault()
     setStatus('loading')
 
-    const res = await fetch('/api/contact', {
+    const res = await fetch('horen/v2/api/contact', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify(form),
