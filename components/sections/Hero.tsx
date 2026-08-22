@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-[#0f3737] min-h-[420px]">
       {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#0f3737] to-[#1A8C8C] opacity-90" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0d2a3d] to-[#0EA5D8] opacity-90" />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-24 flex flex-col md:flex-row items-center justify-between gap-10">
         {/* Left: Copy */}

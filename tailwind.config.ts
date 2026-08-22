@@ -9,8 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        teal:      { DEFAULT: '#1A8C8C', light: '#5DC6C6', pale: '#EBF7F7' },
-        dark:      '#1a2a2a',
+        teal: { DEFAULT: '#0EA5D8', light: '#5DC6C6', pale: '#E0F4FB' },
+        dark: '#1e2d3d',
         soft:      '#F7F8FA',
       },
       fontFamily: {
