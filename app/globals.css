@@ -51,6 +51,32 @@ h1, h2, h3, h4 {
   animation-play-state: paused;
 }
 
+/* Nav link gold slide-in underline */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #C9A84C;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.nav-link:hover {
+  color: #0F2A45;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
 /* Prose styles for blog */
 .prose h2 { font-family: var(--font-serif); margin-top: 2rem; }
 .prose p  { color: var(--muted); line-height: 1.8; }
