@@ -1,5 +1,5 @@
-@import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
 
 :root {
   --teal:       #0EA5D8;
