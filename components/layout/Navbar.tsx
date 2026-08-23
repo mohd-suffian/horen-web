@@ -23,7 +23,7 @@ export default function Navbar() {
           <img
             src="/horen/v2/images/horen-logo2.png"
             alt="HOREN Training"
-            className="h-14 w-auto"
+            className="h-16 w-auto"
           />
         </Link>
 

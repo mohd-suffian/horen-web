@@ -1,26 +1,22 @@
-const stats = [
-  { num: '200+',  label: 'Corporate Clients' },
-  { num: '18+',   label: 'Years in Malaysia' },
-  { num: '5,000+',label: 'Participants Trained' },
-  { num: '4',     label: 'Certified Partners' },
-]
-
 export default function StatsBar() {
+  const stats = [
+    { num: '2019', label: 'Established' },
+    { num: '8+',   label: 'Expert Trainers' },
+    { num: '12+',  label: 'Hotel Partners' },
+    { num: '8',    label: 'Training Categories' },
+    { num: '100%', label: 'HRD Corp Claimable' },
+  ]
   return (
-    <div className="bg-teal px-6 md:px-10 py-11">
-      <div className="max-w-6xl mx-auto flex flex-wrap justify-around items-center gap-6">
-        {stats.map((s, i) => (
-          <div key={i} className="flex items-center gap-6">
-            <div className="text-center">
-              <p className="font-serif text-4xl md:text-5xl text-white leading-none tracking-tight">{s.num}</p>
-              <p className="text-xs text-white/68 mt-2 uppercase tracking-[0.1em] font-medium">{s.label}</p>
-            </div>
-            {i < stats.length - 1 && (
-              <div className="hidden md:block w-px h-12 bg-white/20" />
-            )}
+    <div className="bg-[#1A8C8C] flex justify-around items-center py-9 px-10 gap-4">
+      {stats.map((s, i) => (
+        <>
+          <div key={s.label} className="text-center">
+            <div className="font-serif text-[44px] text-white leading-none">{s.num}</div>
+            <div className="text-[11px] text-white/65 uppercase tracking-widest mt-1.5">{s.label}</div>
           </div>
-        ))}
-      </div>
+          {i < stats.length - 1 && <div className="w-px h-12 bg-white/18" />}
+        </>
+      ))}
     </div>
   )
 }

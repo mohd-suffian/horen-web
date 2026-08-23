@@ -1,7 +1,8 @@
 const clients = [
-  'Petronas', 'RHB Bank', 'Maybank', 'Weststar Aviation',
-  'MIDA', 'Sunway Group', 'Telekom Malaysia', 'Axiata',
-  'Marrybrown', 'TNB', 'CIMB', 'Shell Malaysia',
+  'The Ruma Hotel & Residences','Sunway Hotel Putra KL','St. Giles Hotels',
+  'Meliá Kuala Lumpur','Holiday Villa Hotels & Resorts','SKS Hospitality',
+  'Starwood Hotels & Resorts','Sunway Hotel Big Box','Weststar Aviation',
+  'RHB Bank','Marrybrown','MIDA','F-Secure',
 ]
 
 export default function TrustStrip() {

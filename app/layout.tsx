@@ -4,12 +4,17 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
-  title:       'HOREN Training | Malaysia IT & Soft Skills Training',
-  description: "Malaysia's most established IT and soft skills training provider. HRD Corp claimable, Microsoft, AWS and Red Hat certified. Trusted since 2006.",
-  keywords:    'IT training Malaysia, HRD Corp, Azure training, AWS training, soft skills, corporate training KL',
+  title:       'HOREN Training | Malaysia Hospitality & Soft Skills Training',
+  description: "Malaysia's only hospitality-dedicated, HRD Corp-claimable training partner. Measurable results on guest scores, staff retention and RevPAR.",
+  keywords:    'hospitality training Malaysia, HRD Corp claimable, hotel training, service excellence, soft skills, corporate training KL',
+  icons: {
+    icon:     '/horen/v2/images/favicons/favicon3.ico',
+    shortcut: '/horen/v2/images/favicons/favicon3.ico',
+    apple:    '/horen/v2/images/favicons/favicon3.ico',
+  },
   openGraph: {
     title:       'HOREN Training | Excel With Knowledge',
-    description: 'Corporate IT & soft skills training in Malaysia since 2006.',
+    description: "Malaysia's only hospitality-dedicated, HRD Corp-claimable training partner.",
     url:         'https://horen.com.my',
     siteName:    'HOREN Training',
     locale:      'en_MY',

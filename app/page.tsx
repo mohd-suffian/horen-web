@@ -6,6 +6,7 @@ import WhyHoren    from '@/components/sections/WhyHoren'
 import AboutStrip  from '@/components/sections/AboutStrip'
 import Testimonials from '@/components/sections/Testimonials'
 import CtaBlock    from '@/components/sections/CtaBlock'
+import Gallery from '@/components/sections/Gallery'
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <WhyHoren />
       <AboutStrip />
       <Testimonials />
+      <Gallery />
       <CtaBlock />
     </>
   )
