@@ -21,7 +21,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <img
-            src="/horen/v2/images/horen-logo2.png"
+            src="/horen/v2/images/horen-logo5.png"
             alt="HOREN Training"
             className="h-16 w-auto"
           />
