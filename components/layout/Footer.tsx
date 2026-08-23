@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const quickLinks = [
   { label: 'Home',       href: '/' },
@@ -27,8 +28,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Column 1 — Brand */}
           <div>
-            <p className="font-serif text-2xl text-teal-light">HOREN</p>
-            <p className="text-sm text-white/55 mt-1">Excel With Knowledge</p>
+            <Image
+              src="/images/horen-logo5.png"
+              alt="HOREN Training"
+              width={140}
+              height={48}
+              className="h-12 w-auto"
+            />
+            <p className="text-sm text-white/55 mt-3">Excel With Knowledge</p>
             <p className="text-xs text-white/35 leading-relaxed mt-4">
               No 8, Unit A-21-03, Tower A,<br />
               Vertical Business Suite, Jalan Kerinchi,<br />
@@ -63,12 +70,6 @@ export default function Footer() {
             <div className="flex flex-col gap-3 items-start">
               <a href="tel:0124305054" className="text-sm text-white/55 hover:text-white/90">012 430 5054</a>
               <a href="https://www.horen.com.my" className="text-sm text-white/55 hover:text-white/90">www.horen.com.my</a>
-              <Link
-                href="/contact"
-                className="mt-1 bg-[#1A8C8C] text-white text-sm font-semibold px-5 py-2 rounded-md hover:bg-[#1A8C8C]/90 transition-colors"
-              >
-                Enquire Now
-              </Link>
             </div>
           </div>
 
