@@ -8,9 +8,9 @@ export const metadata: Metadata = {
   description: "Malaysia's only hospitality-dedicated, HRD Corp-claimable training partner. Measurable results on guest scores, staff retention and RevPAR.",
   keywords:    'hospitality training Malaysia, HRD Corp claimable, hotel training, service excellence, soft skills, corporate training KL',
   icons: {
-    icon:     '/horen/v2/images/favicons/favicon3.ico',
-    shortcut: '/horen/v2/images/favicons/favicon3.ico',
-    apple:    '/horen/v2/images/favicons/favicon3.ico',
+    icon:     '/horen/v2/favicon.png',
+    shortcut: '/horen/v2/favicon.png',
+    apple:    '/horen/v2/favicon.png',
   },
   openGraph: {
     title:       'HOREN Training | Excel With Knowledge',
