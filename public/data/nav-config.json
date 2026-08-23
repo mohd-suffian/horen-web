@@ -6,14 +6,14 @@
   ],
   "programmes": {
     "featured": [
-      { "label": "Service Excellence, F&B & Housekeeping", "href": "/programmes", "column": "Hospitality Core", "visible": true },
-      { "label": "Sales, Marketing & Brand Image", "href": "/programmes", "column": "Hospitality Core", "visible": true },
-      { "label": "Leadership & Supervisory Skills", "href": "/programmes", "column": "People & Culture", "visible": true },
-      { "label": "Workplace Wellness & EQ", "href": "/programmes", "column": "People & Culture", "visible": true },
-      { "label": "Communication Skills", "href": "/programmes", "column": "People & Culture", "visible": true },
-      { "label": "Team Building", "href": "/programmes", "column": "People & Culture", "visible": true },
-      { "label": "PDPA, Cybersecurity & Labour Law", "href": "/programmes", "column": "Compliance & Tech", "visible": true },
-      { "label": "AI, Excel & Productivity Tools", "href": "/programmes", "column": "Compliance & Tech", "visible": true }
+      { "label": "Service Excellence, F&B & Housekeeping", "href": "/programmes#service-excellence", "column": "Hospitality Core", "visible": true },
+      { "label": "Sales, Marketing & Brand Image", "href": "/programmes#sales-marketing", "column": "Hospitality Core", "visible": true },
+      { "label": "Leadership & Supervisory Skills", "href": "/programmes#leadership", "column": "People & Culture", "visible": true },
+      { "label": "Workplace Wellness & EQ", "href": "/programmes#wellness", "column": "People & Culture", "visible": true },
+      { "label": "Communication Skills", "href": "/programmes#communication", "column": "People & Culture", "visible": true },
+      { "label": "Team Building", "href": "/programmes#team-building", "column": "People & Culture", "visible": true },
+      { "label": "PDPA, Cybersecurity & Labour Law", "href": "/programmes#pdpa", "column": "Compliance & Tech", "visible": true },
+      { "label": "AI, Excel & Productivity Tools", "href": "/programmes#ai-productivity", "column": "Compliance & Tech", "visible": true }
     ]
   },
   "clientele": [

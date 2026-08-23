@@ -1,6 +1,17 @@
 import Link from 'next/link'
 import { categories } from '@/lib/programmes'
 
+const categoryIds: Record<string, string> = {
+  'Leadership and Supervisory Skills':      'leadership',
+  'Communication Skills':                   'communication',
+  'Team Building':                          'team-building',
+  'AI, Excel and Productivity Tools':       'ai-productivity',
+  'Workplace Wellness and EQ':              'wellness',
+  'PDPA, Cybersecurity and Labour Law':     'pdpa',
+  'Service Excellence, F&B and Housekeeping': 'service-excellence',
+  'Sales, Marketing and Brand Image':       'sales-marketing',
+}
+
 export default function ProgrammesPage() {
   return (
     <div className="bg-white min-h-screen">
@@ -25,7 +36,8 @@ export default function ProgrammesPage() {
           {categories.map((c) => (
             <div
               key={c.name}
-              className="bg-white rounded-xl border border-gray-100 shadow-[0_2px_20px_rgba(0,0,0,0.06)] p-7 flex flex-col"
+              id={categoryIds[c.name]}
+              className="bg-white rounded-xl border border-gray-100 shadow-[0_2px_20px_rgba(0,0,0,0.06)] p-7 flex flex-col scroll-mt-20"
             >
               <div className="flex items-start justify-between gap-4 mb-1.5">
                 <h2 className="font-serif text-2xl text-dark leading-snug">{c.name}</h2>

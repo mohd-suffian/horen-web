@@ -57,11 +57,16 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <div className="bg-white min-h-screen">
+      {/* Cover banner */}
+      <div className="aspect-[21/9] md:aspect-[3/1] bg-[#1A8C8C] flex items-center justify-center">
+        <span className="font-serif text-white/40 text-4xl">HOREN</span>
+      </div>
+
       {/* Header */}
       <div className="bg-soft py-14 px-6 md:px-10 border-b border-gray-100">
         <div className="max-w-3xl mx-auto">
           <Link href="/blog" className="text-xs font-semibold text-teal uppercase tracking-widest hover:underline">
-            ← Back to blog
+            ← Back to Blog
           </Link>
           <p className="text-xs font-semibold uppercase tracking-widest text-teal mt-4 mb-3">{post.category}</p>
           <h1 className="font-serif text-3xl md:text-4xl text-dark leading-snug mb-4">{post.title}</h1>
@@ -72,7 +77,7 @@ export default async function BlogPostPage({ params }: Props) {
       </div>
 
       {/* Content */}
-      <article className="max-w-3xl mx-auto px-6 md:px-10 py-12">
+      <article className="max-w-3xl mx-auto px-6 md:px-10 py-12 leading-relaxed">
         <div
           className="prose prose-lg max-w-none
             prose-headings:font-serif prose-headings:font-normal prose-headings:text-dark
