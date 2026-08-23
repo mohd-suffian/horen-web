@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import { FaLinkedinIn, FaFacebookF, FaInstagram } from 'react-icons/fa'
 
 const quickLinks = [
   { label: 'Home',       href: '/' },
@@ -16,9 +16,9 @@ const legalLinks = [
 ]
 
 const socials = [
-  { label: 'LinkedIn',   initial: 'in' },
-  { label: 'Facebook',   initial: 'f' },
-  { label: 'Instagram',  initial: 'ig' },
+  { label: 'LinkedIn',  Icon: FaLinkedinIn },
+  { label: 'Facebook',  Icon: FaFacebookF },
+  { label: 'Instagram', Icon: FaInstagram },
 ]
 
 export default function Footer() {
@@ -28,12 +28,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Column 1 — Brand */}
           <div>
-            <Image
-              src="/images/horen-logo5.png"
+            <img
+              src="/horen/v2/images/horen-logo5.png"
               alt="HOREN Training"
-              width={140}
-              height={48}
-              className="h-12 w-auto"
+              style={{ height: '48px', width: 'auto', display: 'block' }}
             />
             <p className="text-sm text-white/55 mt-3">Excel With Knowledge</p>
             <p className="text-xs text-white/35 leading-relaxed mt-4">
@@ -73,25 +71,28 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 4 — Get in touch mini CTA */}
+          {/* Column 4 — HRD Corp info + social media */}
           <div>
-            <p className="font-serif text-xl text-white mb-2">Ready to train your team?</p>
-            <p className="text-sm text-white/55 mb-5">Proposals within 48 hours.</p>
-            <Link
-              href="/contact"
-              className="inline-block bg-[#1A8C8C] text-white text-sm font-semibold px-5 py-2 rounded-md hover:bg-[#1A8C8C]/90 transition-colors mb-7"
-            >
-              Enquire Now
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#5DC6C6]">HRD Corp Approved</p>
+            <div className="border border-teal-600 rounded-lg p-4 mt-3">
+              <p className="text-white font-semibold text-sm">SBL-Khas Certified</p>
+              <p className="text-gray-400 text-xs mt-1">
+                All 60+ programmes are HRD Corp claimable — we handle the grant paperwork.
+              </p>
+            </div>
+            <Link href="/programmes" className="block text-teal-400 text-sm hover:text-white mt-3">
+              View all programmes →
             </Link>
-            <div className="flex items-center gap-3">
+            <p className="text-xs text-gray-500 mt-4 mb-2">Follow us</p>
+            <div className="flex flex-row gap-2">
               {socials.map(s => (
                 <a
                   key={s.label}
                   href="#"
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-full border border-[#1A8C8C] text-[#1A8C8C] text-xs font-semibold flex items-center justify-center hover:bg-[#1A8C8C] hover:text-white transition-colors"
+                  className="w-8 h-8 rounded-full border border-teal-700 flex items-center justify-center text-teal-400 hover:border-teal-400 transition-colors"
                 >
-                  {s.initial}
+                  <s.Icon size={14} />
                 </a>
               ))}
             </div>
