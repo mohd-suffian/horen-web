@@ -33,7 +33,7 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className="nav-link text-sm font-medium text-gray-500 px-0.5"
+              className="nav-link font-medium text-gray-500 px-0.5"
             >
               {l.label}
             </Link>
