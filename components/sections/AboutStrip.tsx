@@ -24,13 +24,13 @@ export default function AboutStrip() {
             Trainers who&apos;ve worked in the industry they teach
           </h2>
           <p className="text-base text-gray-500 leading-[1.78] mb-4">
-            Our trainers aren&apos;t consultants who theorise about technology. They&apos;ve configured
-            enterprise systems, led infrastructure migrations, and managed technical teams under
-            real pressure. That experience walks into every room we train in.
+            Our trainers aren&apos;t academics or generalists — they&apos;ve managed hotel floors, led
+            F&amp;B teams, and handled real guest escalations. That operational experience is what
+            makes HOREN programmes land differently from off-the-shelf corporate training.
           </p>
           <p className="text-base text-gray-500 leading-[1.78]">
-            That depth is why organisations across Malaysia — from government agencies to
-            multinational corporations — return to HOREN year after year.
+            That depth is why properties across Malaysia — from international chains to
+            independent boutique hotels — return to HOREN year after year.
           </p>
         </div>
 

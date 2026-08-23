@@ -1,14 +1,14 @@
 const testimonials = [
   {
-    quote:  'The Azure training gave our IT team the confidence to lead our cloud migration. The trainer understood our environment and adapted the content on the spot.',
-    name:   'IT Director',
-    org:    'Fortune 500 financial services firm, KL',
+    quote:  'The service excellence programme transformed how our front desk team handles guest interactions. Guest satisfaction scores improved within the first month.',
+    name:   'Hotel Manager',
+    org:    '5-star property, Kuala Lumpur',
     accent: 'border-teal',
   },
   {
-    quote:  'Practical, culturally attuned, and deeply relevant. HOREN understands the Malaysian corporate workplace in a way that generic training firms simply don\'t.',
-    name:   'L&D Head',
-    org:    'Top 30 Bursa Malaysia company',
+    quote:  'HOREN understood our property\'s culture from day one. The training felt custom-built, not off-the-shelf. Our F&B team still references the techniques today.',
+    name:   'Director of Human Resources',
+    org:    'International hotel chain, Malaysia',
     accent: 'border-teal-light',
   },
 ]
