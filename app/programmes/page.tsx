@@ -5,9 +5,9 @@ export default function ProgrammesPage() {
   return (
     <div className="bg-white min-h-screen">
       {/* Header */}
-      <div className="bg-[#0F2A45] py-20 px-6 md:px-10">
+      <div className="bg-[#1A8C8C] py-20 px-6 md:px-10">
         <div className="max-w-5xl mx-auto">
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#C9A84C] mb-3">
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#1A8C8C] mb-3">
             2026/27 Training Catalogue
           </p>
           <h1 className="font-serif text-4xl md:text-5xl text-white mb-4">
@@ -29,7 +29,7 @@ export default function ProgrammesPage() {
             >
               <div className="flex items-start justify-between gap-4 mb-1.5">
                 <h2 className="font-serif text-2xl text-dark leading-snug">{c.name}</h2>
-                <span className="shrink-0 text-[11px] font-bold uppercase tracking-wide text-[#0F2A45] bg-[#C9A84C]/15 rounded-full px-2.5 py-1">
+                <span className="shrink-0 text-[11px] font-bold uppercase tracking-wide text-[#1A8C8C] bg-[#1A8C8C]/15 rounded-full px-2.5 py-1">
                   {c.count}
                 </span>
               </div>
@@ -45,7 +45,7 @@ export default function ProgrammesPage() {
 
               <Link
                 href="/contact"
-                className="mt-auto text-sm font-semibold text-[#C9A84C] hover:opacity-80 self-start"
+                className="mt-auto text-sm font-semibold text-[#1A8C8C] hover:opacity-80 self-start"
               >
                 View programmes →
               </Link>
@@ -55,14 +55,14 @@ export default function ProgrammesPage() {
       </div>
 
       {/* CTA strip */}
-      <div className="bg-[#0F2A45] py-14 px-6 md:px-10">
+      <div className="bg-[#1A8C8C] py-14 px-6 md:px-10">
         <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <p className="text-white text-xl font-serif">
             Can&apos;t find what you need? We customise programmes for your property.
           </p>
           <Link
             href="/contact"
-            className="shrink-0 bg-[#C9A84C] text-[#0F2A45] font-semibold text-sm px-6 py-3 rounded-md hover:opacity-90 transition-opacity"
+            className="shrink-0 bg-white text-[#1A8C8C] font-semibold text-sm px-6 py-3 rounded-md hover:opacity-90 transition-opacity"
           >
             Get a free proposal
           </Link>
