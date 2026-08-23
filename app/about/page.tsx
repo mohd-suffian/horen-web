@@ -8,12 +8,12 @@ const beliefs = [
 
 const leaders = [
   {
-    name:  'Amir Shamsudin',
+    name:  'Amir Shamodin',
     role:  'Managing Director',
-    quote: 'Listening Skill is an opportunity that Horen is taking full advantage of.',
+    quote: "Real change happens when training connects to the work people do every day — that's the only standard we hold ourselves to.",
   },
   {
-    name:  'Felicia Phuoh',
+    name:  'Felicia Phuah',
     role:  'Head of Training & Marketing',
     quote: 'Empathy is at the core of impactful training.',
   },

@@ -3,11 +3,14 @@
 import { useState } from 'react'
 
 const programmes = [
-  'Microsoft Azure & M365',
-  'AWS Cloud',
-  'Red Hat Linux',
-  'Soft Skills & Leadership',
-  'Technical Writing',
+  'Service Excellence, F&B & Housekeeping',
+  'Leadership & Supervisory Skills',
+  'Communication Skills',
+  'Team Building',
+  'AI, Excel & Productivity Tools',
+  'Workplace Wellness & EQ',
+  'Sales, Marketing & Brand Image',
+  'PDPA, Cybersecurity & Labour Law',
   'Custom / Multiple programmes',
   'Not sure yet',
 ]

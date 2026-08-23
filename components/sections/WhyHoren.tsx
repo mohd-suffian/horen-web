@@ -3,8 +3,8 @@ import { Star, TrendingUp, CheckCircle, Building } from 'lucide-react'
 const reasons = [
   {
     Icon:  Star,
-    title: 'Certified expertise',
-    desc:  'Microsoft, AWS, and Red Hat certified trainers who have worked in the environments they teach.',
+    title: 'Industry-built expertise',
+    desc:  "Every HOREN trainer has real frontline hospitality experience — from hotel operations to F&B management. They teach what they've lived.",
   },
   {
     Icon:  TrendingUp,
@@ -18,8 +18,8 @@ const reasons = [
   },
   {
     Icon:  Building,
-    title: 'Fortune 500 track record',
-    desc:  'Trusted by GLCs, top-100 Bursa companies, and major corporates across Malaysia since 2006.',
+    title: "Trusted by Malaysia's top hotels",
+    desc:  'From international chains to boutique properties, over 12 hotel partners across Malaysia have trained their teams with HOREN since 2019.',
   },
 ]
 

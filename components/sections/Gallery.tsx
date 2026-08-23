@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function Gallery() {
   const slots = [
     { label: 'Featured photo', hint: 'Upload hero shot', large: true },
@@ -34,7 +36,7 @@ export default function Gallery() {
           ))}
         </div>
         <div className="text-center mt-6">
-          <a href="/gallery" className="text-sm text-teal font-semibold">View full gallery →</a>
+          <Link href="/gallery" className="text-sm text-teal font-semibold">View full gallery →</Link>
         </div>
       </div>
     </section>
