@@ -3,18 +3,18 @@ import Link from 'next/link'
 export default function Hero() {
   return (
     <section
-      className="relative min-h-[560px] flex items-center bg-cover bg-center py-24"
+      className="relative min-h-[560px] flex items-center bg-cover bg-center py-24 overflow-hidden"
       style={{ backgroundImage: "url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80')" }}
     >
       <div className="absolute inset-0 bg-[#0A3333]/72" />
-      <div className="relative px-10 w-[60%] min-w-[680px]">
+      <div className="relative px-6 sm:px-10 w-full md:w-[60%] md:min-w-[680px]">
         <div className="flex items-center gap-3 mb-5">
           <span className="w-6 h-px bg-[#C9A84C]" />
           <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#C9A84C]">
             Malaysia's Hospitality Training Specialist
           </p>
         </div>
-        <h1 className="font-serif font-light text-white leading-[1.2] mb-5 text-[57px]">
+        <h1 className="font-serif font-light text-white leading-[1.2] mb-5 text-4xl sm:text-5xl lg:text-6xl break-words">
           Where service becomes{' '}
           <em className="not-italic italic font-bold text-[#C9A84C]">revenue</em> and staff
           become{' '}

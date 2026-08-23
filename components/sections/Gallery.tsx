@@ -17,13 +17,13 @@ export default function Gallery() {
         <p className="text-gray-500 text-sm leading-relaxed mb-8 max-w-xl">
           Live sessions, team building days, and award nights across Malaysia's leading hotel properties.
         </p>
-        <div className="grid grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {slots.map((s) => (
             <div
               key={s.label}
-              className={`${s.large ? 'col-span-2 row-span-2 min-h-[260px]' : ''} 
-                aspect-[4/3] bg-gradient-to-br from-[#E8F5F5] to-[#D4EAF0] 
-                border-[1.5px] border-dashed border-[#90C5C5] rounded-xl 
+              className={`${s.large ? 'md:col-span-2 md:row-span-2 md:min-h-[260px]' : ''}
+                aspect-square md:aspect-[4/3] bg-gradient-to-br from-[#E8F5F5] to-[#D4EAF0]
+                border-[1.5px] border-dashed border-[#90C5C5] rounded-xl
                 flex flex-col items-center justify-center gap-2 cursor-pointer`}
             >
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1A8C8C" strokeWidth="1.5" opacity="0.6">
