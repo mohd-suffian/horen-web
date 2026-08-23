@@ -9,16 +9,16 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[#0A3333]/72" />
       <div className="relative px-10 w-[60%] min-w-[680px]">
         <div className="flex items-center gap-3 mb-5">
-          <span className="w-6 h-px bg-[#1A8C8C]" />
-          <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-white">
+          <span className="w-6 h-px bg-[#C9A84C]" />
+          <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#C9A84C]">
             Malaysia's Hospitality Training Specialist
           </p>
         </div>
         <h1 className="font-serif font-light text-white leading-[1.2] mb-5 text-[57px]">
           Where service becomes{' '}
-          <em className="not-italic italic font-bold text-white">revenue</em> and staff
+          <em className="not-italic italic font-bold text-[#C9A84C]">revenue</em> and staff
           become{' '}
-          <em className="not-italic italic font-bold text-white">assets</em>
+          <em className="not-italic italic font-bold text-[#C9A84C]">assets</em>
         </h1>
         <p className="text-sm text-white/70 leading-relaxed mb-8 max-w-[420px]">
           The only HRD Corp-claimable training partner dedicated entirely to hospitality.
