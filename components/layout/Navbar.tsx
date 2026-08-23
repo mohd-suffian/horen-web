@@ -18,30 +18,29 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 h-[68px] flex items-center px-6 md:px-10">
       <div className="w-full flex items-center justify-between">
-        {/* Logo + nav links, left-aligned */}
-        <div className="flex items-center gap-12">
-          <Link href="/" className="flex items-center">
-            <img
-              src="/horen/v2/images/horen-logo5.png"
-              alt="HOREN Training"
-              className="h-16 w-auto"
-            />
-          </Link>
+        {/* Logo — far left */}
+        <Link href="/" className="flex items-center">
+          <img
+            src="/horen/v2/images/horen-logo5.png"
+            alt="HOREN Training"
+            className="h-16 w-auto"
+          />
+        </Link>
 
-          <div className="hidden md:flex items-center gap-7">
-            {links.map(l => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="text-sm font-medium text-gray-500 hover:text-teal transition-colors"
-              >
-                {l.label}
-              </Link>
-            ))}
-          </div>
+        {/* Nav links — center */}
+        <div className="hidden md:flex items-center gap-7">
+          {links.map(l => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="text-sm font-medium text-gray-500 hover:text-teal transition-colors"
+            >
+              {l.label}
+            </Link>
+          ))}
         </div>
 
-        {/* Search + CTA, right-aligned */}
+        {/* Search + CTA — far right */}
         <div className="hidden md:flex items-center gap-5">
           <div className="relative w-[220px]">
             <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
