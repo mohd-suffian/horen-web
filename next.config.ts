@@ -8,7 +8,10 @@ const nextConfig: NextConfig = {
 
   // Allow images from horen.com.my and dn-lab.my
   images: {
-    domains: ['horen.com.my', 'app.dn-lab.my'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'horen.com.my' },
+      { protocol: 'https', hostname: 'app.dn-lab.my' },
+    ],
   },
 }
 
