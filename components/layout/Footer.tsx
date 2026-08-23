@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FaLinkedinIn, FaFacebookF, FaInstagram } from 'react-icons/fa'
+import { FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa'
 
 const quickLinks = [
   { label: 'Home',       href: '/' },
@@ -16,8 +16,8 @@ const legalLinks = [
 ]
 
 const socials = [
-  { label: 'LinkedIn',  Icon: FaLinkedinIn },
-  { label: 'Facebook',  Icon: FaFacebookF },
+  { label: 'LinkedIn',  Icon: FaLinkedin },
+  { label: 'Facebook',  Icon: FaFacebook },
   { label: 'Instagram', Icon: FaInstagram },
 ]
 
