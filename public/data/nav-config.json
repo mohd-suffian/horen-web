@@ -1,0 +1,23 @@
+{
+  "about": [
+    { "label": "Our Story", "href": "/about", "visible": true },
+    { "label": "Meet the Team", "href": "/about/team", "visible": true },
+    { "label": "Awards & Recognition", "href": "/awards", "visible": true }
+  ],
+  "programmes": {
+    "featured": [
+      { "label": "Service Excellence, F&B & Housekeeping", "href": "/programmes", "column": "Hospitality Core", "visible": true },
+      { "label": "Sales, Marketing & Brand Image", "href": "/programmes", "column": "Hospitality Core", "visible": true },
+      { "label": "Leadership & Supervisory Skills", "href": "/programmes", "column": "People & Culture", "visible": true },
+      { "label": "Workplace Wellness & EQ", "href": "/programmes", "column": "People & Culture", "visible": true },
+      { "label": "Communication Skills", "href": "/programmes", "column": "People & Culture", "visible": true },
+      { "label": "Team Building", "href": "/programmes", "column": "People & Culture", "visible": true },
+      { "label": "PDPA, Cybersecurity & Labour Law", "href": "/programmes", "column": "Compliance & Tech", "visible": true },
+      { "label": "AI, Excel & Productivity Tools", "href": "/programmes", "column": "Compliance & Tech", "visible": true }
+    ]
+  },
+  "clientele": [
+    { "label": "Hotel Clients", "href": "/clientele#hotels", "visible": true },
+    { "label": "Non-Hotel Clients", "href": "/clientele#non-hotel", "visible": true }
+  ]
+}
