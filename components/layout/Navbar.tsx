@@ -106,7 +106,7 @@ export default function Navbar() {
           </div>
           <Link
             href="/contact"
-            className="bg-[#1A8C8C] text-white text-sm font-semibold px-5 py-2 rounded-md hover:bg-[#1A8C8C]/90 transition-colors"
+            className="bg-[#1A8C8C] text-white text-sm font-semibold px-4 py-2 rounded-md hover:bg-[#1A8C8C]/90 transition-colors"
           >
             Enquire Now
           </Link>
