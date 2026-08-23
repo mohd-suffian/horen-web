@@ -1,17 +1,17 @@
 import Link from 'next/link'
 
-const programmes = [
-  { label: 'Microsoft Azure & M365', href: '/programmes/azure' },
-  { label: 'AWS Cloud',              href: '/programmes/aws' },
-  { label: 'Red Hat Linux',          href: '/programmes/redhat' },
-  { label: 'Soft Skills',            href: '/programmes/soft-skills' },
+const quickLinks = [
+  { label: 'Home',       href: '/' },
+  { label: 'About',      href: '/about' },
+  { label: 'Programmes', href: '/programmes' },
+  { label: 'Clientele',  href: '/clientele' },
+  { label: 'Gallery',    href: '/gallery' },
+  { label: 'Blog',       href: '/blog' },
 ]
 
-const company = [
-  { label: 'About',    href: '/about' },
-  { label: 'Trainers', href: '/trainers' },
-  { label: 'Clients',  href: '/clients' },
-  { label: 'Blog',     href: '/blog' },
+const legalLinks = [
+  { label: 'Trainer Recruitment', href: '/careers/trainers' },
+  { label: 'Privacy Policy',      href: '/privacy' },
 ]
 
 export default function Footer() {
@@ -21,17 +21,21 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-[1.4fr_1fr_1fr_1.4fr] gap-10 mb-12">
           {/* Brand */}
           <div>
-            <p className="font-serif text-2xl text-teal-light">HOREN Training</p>
-            <p className="text-sm text-white/35 mt-3 leading-relaxed">
-              Malaysia&apos;s trusted IT and soft skills training provider since 2006.
+            <p className="font-serif text-2xl text-teal-light">HOREN</p>
+            <p className="text-sm text-white/55 mt-1">Excel With Knowledge</p>
+            <p className="text-xs text-white/35 leading-relaxed mt-4">
+              No 8, Unit A-21-03, Tower A,<br />
+              Vertical Business Suite, Jalan Kerinchi,<br />
+              Bangsar South, 59200 Kuala Lumpur
             </p>
+            <a href="tel:0124305054" className="block text-sm text-white/55 hover:text-white/90 mt-3">012 430 5054</a>
           </div>
 
-          {/* Company */}
+          {/* Quick Links */}
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/30 mb-4">Company</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/30 mb-4">Quick Links</p>
             <div className="flex flex-col gap-3">
-              {company.map(l => (
+              {quickLinks.map(l => (
                 <Link key={l.href} href={l.href} className="text-sm text-white/55 hover:text-white/90 transition-colors">
                   {l.label}
                 </Link>
@@ -39,11 +43,11 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Programmes */}
+          {/* Join Us & Legal */}
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/30 mb-4">Programmes</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/30 mb-4">Join Us &amp; Legal</p>
             <div className="flex flex-col gap-3">
-              {programmes.map(l => (
+              {legalLinks.map(l => (
                 <Link key={l.href} href={l.href} className="text-sm text-white/55 hover:text-white/90 transition-colors">
                   {l.label}
                 </Link>
@@ -54,21 +58,21 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/30 mb-4">Contact</p>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 items-start">
               <a href="tel:0124305054" className="text-sm text-white/55 hover:text-white/90">012 430 5054</a>
-              <a href="mailto:hello@horen.com.my" className="text-sm text-white/55 hover:text-white/90">hello@horen.com.my</a>
               <a href="https://www.horen.com.my" className="text-sm text-white/55 hover:text-white/90">www.horen.com.my</a>
-              <p className="text-xs text-white/35 leading-relaxed mt-1">
-                No 8, Unit A-21-03, Tower A,<br />
-                Vertical Business Suite, Jalan Kerinchi,<br />
-                Bangsar South, 59200 Kuala Lumpur
-              </p>
+              <Link
+                href="/contact"
+                className="mt-1 bg-[#1A8C8C] text-white text-sm font-semibold px-5 py-2 rounded-md hover:bg-[#1A8C8C]/90 transition-colors"
+              >
+                Enquire Now
+              </Link>
             </div>
           </div>
         </div>
 
         <div className="border-t border-white/[0.08] pt-5 flex flex-col md:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-white/28">© {new Date().getFullYear()} Horen Training Sdn Bhd. All rights reserved.</p>
+          <p className="text-xs text-white/28">© 2026 HOREN Training Sdn Bhd. All rights reserved.</p>
           <p className="text-xs text-white/28">Kuala Lumpur, Malaysia</p>
         </div>
       </div>

@@ -2,18 +2,43 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X, Search } from 'lucide-react'
+import { Menu, X, Search, ChevronDown } from 'lucide-react'
 
-const links = [
-  { label: 'About',       href: '/about' },
-  { label: 'Programmes',  href: '/programmes' },
-  { label: 'Trainers',    href: '/trainers' },
-  { label: 'Clients',     href: '/clients' },
-  { label: 'Blog',        href: '/blog' },
+const navItems = [
+  {
+    label: 'About',
+    items: [
+      { label: 'Our Story',        href: '/about' },
+      { label: 'Training Experts', href: '/about/team' },
+      { label: 'Awards & Recognition', href: '/awards' },
+    ],
+  },
+  { label: 'Programmes', href: '/programmes' },
+  {
+    label: 'Clientele',
+    items: [
+      { label: 'Our Clients',   href: '/clientele' },
+      { label: 'Testimonials',  href: '/testimonials' },
+    ],
+  },
+  { label: 'Gallery', href: '/gallery' },
+  { label: 'Blog',    href: '/blog' },
+]
+
+const mobileLinks = [
+  { label: 'Our Story',            href: '/about' },
+  { label: 'Training Experts',     href: '/about/team' },
+  { label: 'Awards & Recognition', href: '/awards' },
+  { label: 'Programmes',           href: '/programmes' },
+  { label: 'Our Clients',          href: '/clientele' },
+  { label: 'Testimonials',         href: '/testimonials' },
+  { label: 'Gallery',              href: '/gallery' },
+  { label: 'Blog',                 href: '/blog' },
 ]
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [activeMenu, setActiveMenu] = useState<string | null>(null)
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 h-[68px] flex items-center px-6 md:px-10">
@@ -29,14 +54,43 @@ export default function Navbar() {
 
         {/* Nav links — center */}
         <div className="hidden md:flex items-center gap-7">
-          {links.map(l => (
-            <Link
-              key={l.href}
-              href={l.href}
-              className="nav-link font-medium text-gray-500 px-0.5"
-            >
-              {l.label}
-            </Link>
+          {navItems.map(item => (
+            item.items ? (
+              <div
+                key={item.label}
+                className="relative"
+                onMouseEnter={() => setActiveMenu(item.label)}
+                onMouseLeave={() => setActiveMenu(null)}
+              >
+                <button className="nav-link font-medium text-gray-500 px-0.5 flex items-center gap-1">
+                  {item.label}
+                  <ChevronDown size={14} />
+                </button>
+                {activeMenu === item.label && (
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-56">
+                    <div className="bg-white rounded-lg border border-gray-100 shadow-[0_8px_30px_rgba(0,0,0,0.1)] py-2">
+                      {item.items.map(sub => (
+                        <Link
+                          key={sub.href}
+                          href={sub.href}
+                          className="block px-4 py-2.5 text-sm text-gray-600 hover:text-[#1A8C8C] hover:bg-gray-50 transition-colors"
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="nav-link font-medium text-gray-500 px-0.5"
+              >
+                {item.label}
+              </Link>
+            )
           ))}
         </div>
 
@@ -54,7 +108,7 @@ export default function Navbar() {
             href="/contact"
             className="bg-teal text-white text-sm font-semibold px-5 py-2 rounded-md hover:bg-teal/90 transition-colors"
           >
-            Inquire now
+            Enquire Now
           </Link>
         </div>
 
@@ -70,8 +124,8 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       {open && (
-        <div className="absolute top-[68px] left-0 right-0 bg-white border-b border-gray-100 px-6 pb-6 md:hidden flex flex-col gap-4">
-          {links.map(l => (
+        <div className="absolute top-[68px] left-0 right-0 bg-white border-b border-gray-100 px-6 pb-6 md:hidden flex flex-col gap-4 max-h-[calc(100vh-68px)] overflow-y-auto">
+          {mobileLinks.map(l => (
             <Link
               key={l.href}
               href={l.href}
@@ -86,7 +140,7 @@ export default function Navbar() {
             className="bg-teal text-white text-sm font-semibold px-5 py-2.5 rounded-md text-center"
             onClick={() => setOpen(false)}
           >
-            Inquire now
+            Enquire Now
           </Link>
         </div>
       )}
