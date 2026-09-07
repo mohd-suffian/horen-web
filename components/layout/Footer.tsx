@@ -38,7 +38,6 @@ export default function Footer() {
               Vertical Business Suite, Jalan Kerinchi,<br />
               Bangsar South, 59200 Kuala Lumpur
             </p>
-            <a href="tel:0124305054" className="block text-sm text-white/55 hover:text-white/90 mt-3">012 430 5054</a>
           </div>
 
           {/* Column 2 — Quick Links */}
