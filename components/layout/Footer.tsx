@@ -74,6 +74,11 @@ export default function Footer() {
           {/* Column 4 — HRD Corp info + social media */}
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-[#5DC6C6]">HRD Corp Approved</p>
+            <img
+              src="/horen/v2/images/HRD Corp - Claimable Logo.png"
+              alt="HRD Corp Claimable Training Provider"
+              className="h-12 w-auto mt-3"
+            />
             <div className="border border-teal-600 rounded-lg p-4 mt-3">
               <p className="text-white font-semibold text-sm">SBL-Khas Certified</p>
               <p className="text-gray-400 text-xs mt-1">

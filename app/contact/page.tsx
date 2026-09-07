@@ -150,6 +150,11 @@ export default function ContactPage() {
             </p>
           </div>
           <div className="bg-teal-pale rounded-xl p-5">
+            <img
+              src="/horen/v2/images/HRD Corp - Claimable Logo.png"
+              alt="HRD Corp Claimable Training Provider"
+              className="h-12 w-auto mb-2"
+            />
             <p className="text-xs font-semibold text-teal uppercase tracking-wide mb-1">HRD Corp claimable</p>
             <p className="text-xs text-gray-600 leading-relaxed">All HOREN programmes qualify for HRD Corp claims under the SBL-Khas scheme. We handle the paperwork.</p>
           </div>
