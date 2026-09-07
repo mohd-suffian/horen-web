@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FaLinkedin, FaFacebook, FaInstagram } from 'react-icons/fa'
+import { FaLinkedin, FaFacebook } from 'react-icons/fa'
 
 const quickLinks = [
   { label: 'Home',       href: '/' },
@@ -16,9 +16,8 @@ const legalLinks = [
 ]
 
 const socials = [
-  { label: 'LinkedIn',  Icon: FaLinkedin },
-  { label: 'Facebook',  Icon: FaFacebook },
-  { label: 'Instagram', Icon: FaInstagram },
+  { label: 'LinkedIn', Icon: FaLinkedin, href: 'https://www.linkedin.com/company/horen-training/' },
+  { label: 'Facebook', Icon: FaFacebook, href: 'https://www.facebook.com/profile.php?id=61582851161637' },
 ]
 
 export default function Footer() {
@@ -66,7 +65,9 @@ export default function Footer() {
             </div>
             <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-white/30 mb-4">Contact</p>
             <div className="flex flex-col gap-3 items-start">
-              <a href="tel:0124305054" className="text-sm text-white/55 hover:text-white/90">012 430 5054</a>
+              <a href="tel:0124305054" className="text-sm text-white/55 hover:text-white/90">012-430 5054 (Amir)</a>
+              <a href="tel:0195825007" className="text-sm text-white/55 hover:text-white/90">019-582 5007 (General)</a>
+              <a href="mailto:info@horen.com.my" className="text-sm text-white/55 hover:text-white/90">info@horen.com.my</a>
               <a href="https://www.horen.com.my" className="text-sm text-white/55 hover:text-white/90">www.horen.com.my</a>
             </div>
           </div>
@@ -93,7 +94,9 @@ export default function Footer() {
               {socials.map(s => (
                 <a
                   key={s.label}
-                  href="#"
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={s.label}
                   className="w-8 h-8 rounded-full border border-teal-700 flex items-center justify-center text-teal-400 hover:border-teal-400 transition-colors"
                 >
