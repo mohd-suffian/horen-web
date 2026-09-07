@@ -18,6 +18,7 @@ interface ProgrammeLink extends NavLink {
 const aboutItems: NavLink[] = (navConfig.about as NavLink[]).filter(i => i.visible !== false)
 const clienteleItems: NavLink[] = (navConfig.clientele as NavLink[]).filter(i => i.visible !== false)
 const programmeItems: ProgrammeLink[] = (navConfig.programmes.featured as ProgrammeLink[]).filter(i => i.visible !== false)
+const joinUsItem: NavLink | null = (navConfig.joinUs as NavLink)?.visible !== false ? (navConfig.joinUs as NavLink) : null
 
 const columnOrder = ['Hospitality Core', 'People & Culture', 'Compliance & Tech']
 const programmeColumns = columnOrder
@@ -148,6 +149,9 @@ export default function Navbar() {
 
           <Link href="/gallery" className="nav-link font-medium text-gray-500 px-0.5">Gallery</Link>
           <Link href="/blog" className="nav-link font-medium text-gray-500 px-0.5">Blog</Link>
+          {joinUsItem && (
+            <Link href={joinUsItem.href} className="nav-link font-medium text-gray-500 px-0.5">{joinUsItem.label}</Link>
+          )}
         </div>
 
         {/* Search + CTA — far right */}
@@ -278,6 +282,15 @@ export default function Navbar() {
             >
               Blog
             </Link>
+            {joinUsItem && (
+              <Link
+                href={joinUsItem.href}
+                onClick={() => setOpen(false)}
+                className="py-3.5 text-sm font-medium text-gray-700 border-b border-gray-100"
+              >
+                {joinUsItem.label}
+              </Link>
+            )}
           </div>
 
           {/* Enquire Now — bottom of drawer */}

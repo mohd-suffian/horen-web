@@ -2,7 +2,7 @@
   "about": [
     { "label": "Our Story", "href": "/about", "visible": true },
     { "label": "Meet the Team", "href": "/about/team", "visible": true },
-    { "label": "Awards & Recognition", "href": "/awards", "visible": true }
+    { "label": "Awards & Recognition", "href": "/awards", "visible": false }
   ],
   "programmes": {
     "featured": [
@@ -19,5 +19,6 @@
   "clientele": [
     { "label": "Hotel Clients", "href": "/clientele#hotels", "visible": true },
     { "label": "Non-Hotel Clients", "href": "/clientele#non-hotel", "visible": true }
-  ]
+  ],
+  "joinUs": { "label": "Join Us", "href": "/careers/trainers", "visible": true }
 }
