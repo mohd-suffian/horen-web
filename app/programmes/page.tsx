@@ -56,7 +56,7 @@ export default function ProgrammesPage() {
               </ul>
 
               <Link
-                href="/contact"
+                href={`#${categoryIds[c.name]}`}
                 className="mt-auto text-sm font-semibold text-[#1A8C8C] hover:opacity-80 self-start"
               >
                 View programmes →
