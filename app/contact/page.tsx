@@ -28,7 +28,7 @@ export default function ContactPage() {
     e.preventDefault()
     setStatus('loading')
 
-    const res = await fetch('horen/v2/api/contact', {
+    const res = await fetch('/horen/v2/api/contact', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify(form),
@@ -137,8 +137,9 @@ export default function ContactPage() {
         <div className="flex flex-col gap-6">
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3">Direct contact</p>
-            <a href="tel:0124305054" className="block text-sm text-dark font-medium hover:text-teal mb-1">012 430 5054</a>
-            <a href="mailto:hello@horen.com.my" className="block text-sm text-teal hover:underline">hello@horen.com.my</a>
+            <a href="tel:+60124305054" className="block text-sm text-dark font-medium hover:text-teal mb-1">Amir (direct): +60 12-430 5054</a>
+            <a href="tel:+60195825007" className="block text-sm text-dark font-medium hover:text-teal mb-1">General line: +60 19-582 5007</a>
+            <a href="mailto:info@horen.com.my" className="block text-sm text-teal hover:underline">info@horen.com.my</a>
           </div>
           <div>
             <p className="text-xs font-semibold uppercase tracking-wide text-gray-400 mb-3">Office</p>
