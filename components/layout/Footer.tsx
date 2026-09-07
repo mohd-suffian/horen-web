@@ -77,7 +77,7 @@ export default function Footer() {
             <img
               src="/horen/v2/images/HRD Corp - Claimable Logo.png"
               alt="HRD Corp Claimable Training Provider"
-              className="h-12 w-auto mt-3"
+              className="h-20 w-auto mt-3"
             />
             <div className="border border-teal-600 rounded-lg p-4 mt-3">
               <p className="text-white font-semibold text-sm">SBL-Khas Certified</p>
