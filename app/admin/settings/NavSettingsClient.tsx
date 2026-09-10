@@ -36,7 +36,7 @@ export default function NavSettingsClient() {
   const [message, setMessage] = useState('')
 
   useEffect(() => {
-    fetch('horen/v2/api/admin/nav-config')
+    fetch('/horen/v2/api/admin/nav-config')
       .then(res => res.json())
       .then(data => {
         setConfig(data)
@@ -63,7 +63,7 @@ export default function NavSettingsClient() {
     setStatus('saving')
     setMessage('')
 
-    const res = await fetch('horen/v2/api/admin/nav-config', {
+    const res = await fetch('/horen/v2/api/admin/nav-config', {
       method:  'POST',
       headers: { 'Content-Type': 'application/json' },
       body:    JSON.stringify(config),

@@ -163,7 +163,7 @@ export default async function AdminDashboard() {
             </div>
             <p className="text-sm text-[#0A3333] font-medium">Suffian</p>
           </div>
-          <form action="/api/admin/logout" method="POST">
+          <form action="/horen/v2/api/admin/logout" method="POST">
             <button className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-[#0A3333] transition-colors">
               <MdLogout size={15} /> Logout
             </button>
