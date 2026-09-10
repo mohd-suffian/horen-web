@@ -14,7 +14,7 @@ export default function AdminLogin() {
     setLoading(true)
     setError('')
 
-    const res = await fetch('horen/v2/api/admin/login', {
+    const res = await fetch('/horen/v2/api/admin/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password }),
@@ -29,10 +29,14 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="min-h-screen bg-soft flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#0A3333] flex items-center justify-center px-4">
       <div className="bg-white rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.08)] p-10 w-full max-w-sm">
-        <p className="font-serif text-3xl text-teal mb-1">HOREN</p>
-        <p className="text-sm text-gray-400 mb-8">Admin portal</p>
+        <img
+          src="/horen/v2/images/horen-logo5.png"
+          alt="HOREN Training"
+          className="h-8 w-auto mb-4"
+        />
+        <p className="font-serif text-[20px] text-[#0A3333] mb-8">Admin Portal</p>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <div>
