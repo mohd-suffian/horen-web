@@ -20,6 +20,9 @@
 # production
 /build
 
+# form submissions (live data, stays on the server)
+/data
+
 # misc
 .DS_Store
 *.pem

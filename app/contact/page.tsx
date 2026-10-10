@@ -28,19 +28,24 @@ export default function ContactPage() {
     e.preventDefault()
     setStatus('loading')
 
-    const res = await fetch('/horen/v2/api/contact', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body:    JSON.stringify(form),
-    })
+    try {
+      const res = await fetch('/horen/v2/api/contact', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(form),
+      })
 
-    const data = await res.json()
-    if (res.ok) {
-      setStatus('success')
-      setMsg(data.message)
-    } else {
+      const data = await res.json().catch(() => ({}))
+      if (res.ok) {
+        setStatus('success')
+        setMsg(data.message)
+      } else {
+        setStatus('error')
+        setMsg(data.error ?? 'Something went wrong. Please try again.')
+      }
+    } catch {
       setStatus('error')
-      setMsg(data.error ?? 'Something went wrong. Please try again.')
+      setMsg('Could not reach the server. Please check your connection or email info@horen.com.my.')
     }
   }
 

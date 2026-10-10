@@ -59,17 +59,19 @@ const contentCards: DashboardCard[] = [
 const crmCards: DashboardCard[] = [
   {
     label: 'Enquiries',
-    desc:  'View and manage contact form submissions and training requests',
+    desc:  'View contact form submissions and training requests',
     Icon:  MdInbox,
-    badge: 'Phase 3',
-    badgeClassName: 'bg-purple-100 text-purple-600',
+    badge: 'Live',
+    badgeClassName: 'bg-green-50 text-green-600',
+    href:  '/admin/enquiries',
   },
   {
     label: 'Trainer applications',
     desc:  'Review recruitment form submissions from trainer candidates',
     Icon:  MdPersonSearch,
-    badge: 'Phase 3',
-    badgeClassName: 'bg-purple-100 text-purple-600',
+    badge: 'Live',
+    badgeClassName: 'bg-green-50 text-green-600',
+    href:  '/admin/applications',
   },
   {
     label: 'Analytics',

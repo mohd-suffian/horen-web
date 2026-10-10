@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 
 const specialisations = [
   'Leadership',
@@ -16,15 +17,34 @@ const specialisations = [
 
 export default function TrainerRecruitmentPage() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', specialisation: '', experience: '', bio: '' })
-  const [submitted, setSubmitted] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
+  const [error, setError] = useState('')
+  const submitted = status === 'success'
 
   function update(field: string, value: string) {
     setForm(f => ({ ...f, [field]: value }))
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setSubmitted(true)
+    setStatus('loading')
+    setError('')
+
+    try {
+      // basePath is not auto-prepended for client-side fetch
+      const res = await fetch('/horen/v2/api/careers', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(form),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok) throw new Error(data.error ?? 'Something went wrong. Please try again.')
+      setStatus('success')
+      window.scrollTo({ top: 0 })
+    } catch (err) {
+      setStatus('error')
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
+    }
   }
 
   return (
@@ -41,11 +61,18 @@ export default function TrainerRecruitmentPage() {
 
       <div className="max-w-2xl mx-auto px-6 md:px-10 py-16">
         {submitted ? (
-          <div className="bg-[#1A8C8C]/10 rounded-xl p-8">
-            <p className="font-serif text-2xl text-dark mb-2">Thank you!</p>
-            <p className="text-gray-600 text-sm">
-              We&apos;ve received your expression of interest and will be in touch if there&apos;s a fit for our trainer network.
+          <div className="bg-[#1A8C8C]/10 rounded-xl p-8" role="status">
+            <p className="font-serif text-2xl text-dark mb-2">Thank you, {form.name.split(' ')[0]}!</p>
+            <p className="text-gray-600 text-sm leading-relaxed">
+              We&apos;ve received your application and will be in touch if there&apos;s a fit for our trainer network.
+              In the meantime, feel free to explore our programmes.
             </p>
+            <Link
+              href="/programmes"
+              className="inline-block mt-6 bg-[#1A8C8C] text-white font-semibold px-5 py-2.5 rounded-lg text-sm hover:bg-[#1A8C8C]/90 transition-colors"
+            >
+              View our programmes
+            </Link>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -114,11 +141,16 @@ export default function TrainerRecruitmentPage() {
               />
             </div>
 
+            {status === 'error' && (
+              <p className="text-sm text-red-600 bg-red-50 rounded-lg px-4 py-3" role="alert">{error}</p>
+            )}
+
             <button
               type="submit"
-              className="bg-[#1A8C8C] text-white font-semibold py-3 rounded-lg text-sm hover:bg-[#1A8C8C]/90 transition-colors"
+              disabled={status === 'loading'}
+              className="bg-[#1A8C8C] text-white font-semibold py-3 rounded-lg text-sm hover:bg-[#1A8C8C]/90 transition-colors disabled:opacity-60 disabled:cursor-wait"
             >
-              Submit
+              {status === 'loading' ? 'Submitting…' : 'Submit application'}
             </button>
           </form>
         )}
