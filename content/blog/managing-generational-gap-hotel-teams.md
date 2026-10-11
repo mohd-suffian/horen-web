@@ -1,7 +1,7 @@
 ---
 title: "Managing the generational gap in hotel teams"
 excerpt: "Four generations can now work the same shift. The friction is rarely about age. It is about unspoken expectations, and leaders can fix that."
-date: "2026-10-27"
+date: "2026-10-11"
 category: "Leadership"
 author: "HOREN Team"
 published: true

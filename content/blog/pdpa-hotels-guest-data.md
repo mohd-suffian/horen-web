@@ -1,7 +1,7 @@
 ---
 title: "PDPA for hotels: protecting guest data at every touchpoint"
 excerpt: "Hotels handle IC copies, passport details, card numbers and guest preferences every day. Where the real risks sit, and the habits that reduce them."
-date: "2026-10-21"
+date: "2026-10-11"
 category: "Compliance"
 author: "HOREN Team"
 published: true

@@ -1,7 +1,7 @@
 ---
 title: "Service recovery: turning hotel complaints into loyalty"
 excerpt: "A complaint handled well can leave a guest more loyal than before. It depends on what your frontliners are trained and allowed to do in the first five minutes."
-date: "2026-10-16"
+date: "2026-10-11"
 category: "Service Excellence"
 author: "HOREN Team"
 published: true
