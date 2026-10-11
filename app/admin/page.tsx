@@ -45,7 +45,6 @@ const contentCards: DashboardCard[] = [
     Icon:  MdArticle,
     badge: 'Phase 2',
     badgeClassName: 'bg-[#1A8C8C]/10 text-[#1A8C8C]',
-    href:  '/admin/blog',
   },
   {
     label: 'Gallery',
