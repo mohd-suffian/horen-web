@@ -1,5 +1,6 @@
 import { notFound }         from 'next/navigation'
 import { getBlogPost, getAllBlogPosts } from '@/lib/cms'
+import { categoryIcons, DefaultCategoryIcon } from '@/components/ui/blog-category-icon'
 import Link from 'next/link'
 
 interface Props {
@@ -60,23 +61,36 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post || !post.published) notFound()
 
   const htmlContent = renderMarkdown(post.content)
+  const CategoryIcon = categoryIcons[post.category] ?? DefaultCategoryIcon
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Cover banner */}
-      <div className="aspect-[21/9] md:aspect-[3/1] bg-[#1A8C8C] flex items-center justify-center">
-        <span className="font-serif text-white/40 text-4xl">HOREN</span>
-      </div>
+      {/* Cover + header */}
+      <div className="relative min-h-[360px] flex items-end overflow-hidden">
+        {post.image ? (
+          <>
+            {/* eslint-disable-next-line @next/next/no-img-element -- plain img for basePath, same as rest of site */}
+            <img
+              src={post.image}
+              alt=""
+              loading="eager"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-black/10" />
+          </>
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1A8C8C] to-[#0A3333] flex items-center justify-center">
+            <CategoryIcon size={72} className="text-white/15" strokeWidth={1.25} aria-hidden="true" />
+          </div>
+        )}
 
-      {/* Header */}
-      <div className="bg-soft py-14 px-6 md:px-10 border-b border-gray-100">
-        <div className="max-w-3xl mx-auto">
-          <Link href="/blog" className="text-xs font-semibold text-teal uppercase tracking-widest hover:underline">
+        <div className="relative max-w-3xl mx-auto w-full px-6 md:px-10 py-10">
+          <Link href="/blog" className="text-xs font-semibold text-white/80 uppercase tracking-widest hover:underline">
             ← Back to Blog
           </Link>
-          <p className="text-xs font-semibold uppercase tracking-widest text-teal mt-4 mb-3">{post.category}</p>
-          <h1 className="font-serif text-3xl md:text-4xl text-dark leading-snug mb-4">{post.title}</h1>
-          <p className="text-sm text-gray-400">
+          <p className="text-xs font-semibold uppercase tracking-widest text-white/80 mt-4 mb-3">{post.category}</p>
+          <h1 className="font-serif text-3xl md:text-4xl text-white leading-snug mb-4">{post.title}</h1>
+          <p className="text-sm text-white/70">
             {post.author} · {new Date(post.date).toLocaleDateString('en-MY', { day: 'numeric', month: 'long', year: 'numeric' })}
           </p>
         </div>

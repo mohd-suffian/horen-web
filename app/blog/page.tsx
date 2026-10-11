@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ImageOff } from 'lucide-react'
 import { getAllBlogPosts } from '@/lib/cms'
+import { categoryIcons, DefaultCategoryIcon } from '@/components/ui/blog-category-icon'
 
 export const metadata = {
   title: 'Blog | HOREN Training',
@@ -33,26 +34,39 @@ export default function BlogPage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
-            {posts.map(post => (
-              <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="bg-white rounded-xl border border-gray-100 shadow-[0_2px_20px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col hover:shadow-[0_4px_24px_rgba(0,0,0,0.1)] transition-shadow scroll-mt-20"
-              >
-                <div className="aspect-[16/9] bg-[#1A8C8C] flex items-center justify-center">
-                  <span className="font-serif text-white/40 text-3xl">HOREN</span>
-                </div>
-                <div className="p-6 flex flex-col flex-1">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-[#1A8C8C] mb-2">{post.category}</p>
-                  <h2 className="font-serif text-xl text-dark mb-2 leading-snug">{post.title}</h2>
-                  <p className="text-xs text-gray-400 mb-3">
-                    {new Date(post.date).toLocaleDateString('en-MY', { day: 'numeric', month: 'long', year: 'numeric' })}
-                  </p>
-                  <p className="text-sm text-gray-500 leading-relaxed mb-4 line-clamp-3">{post.excerpt}</p>
-                  <span className="mt-auto text-sm font-semibold text-[#1A8C8C]">Read more →</span>
-                </div>
-              </Link>
-            ))}
+            {posts.map(post => {
+              const CategoryIcon = categoryIcons[post.category] ?? DefaultCategoryIcon
+              return (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="bg-white rounded-xl border border-gray-100 shadow-[0_2px_20px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col hover:shadow-[0_4px_24px_rgba(0,0,0,0.1)] transition-shadow scroll-mt-20"
+                >
+                  {post.image ? (
+                    /* eslint-disable-next-line @next/next/no-img-element -- plain img for basePath, same as rest of site */
+                    <img
+                      src={post.image}
+                      alt=""
+                      loading="lazy"
+                      className="aspect-[16/9] object-cover w-full"
+                    />
+                  ) : (
+                    <div className="aspect-[16/9] bg-gradient-to-br from-[#1A8C8C] to-[#0A3333] flex items-center justify-center">
+                      <CategoryIcon size={40} className="text-white/40" strokeWidth={1.5} aria-hidden="true" />
+                    </div>
+                  )}
+                  <div className="p-6 flex flex-col flex-1">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-[#1A8C8C] mb-2">{post.category}</p>
+                    <h2 className="font-serif text-xl text-dark mb-2 leading-snug">{post.title}</h2>
+                    <p className="text-xs text-gray-400 mb-3">
+                      {new Date(post.date).toLocaleDateString('en-MY', { day: 'numeric', month: 'long', year: 'numeric' })}
+                    </p>
+                    <p className="text-sm text-gray-500 leading-relaxed mb-4 line-clamp-3">{post.excerpt}</p>
+                    <span className="mt-auto text-sm font-semibold text-[#1A8C8C]">Read more →</span>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         )}
       </div>

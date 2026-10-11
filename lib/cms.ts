@@ -2,8 +2,9 @@ import fs   from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 
-const BLOG_DIR  = path.join(process.cwd(), 'content/blog')
-const PAGES_DIR = path.join(process.cwd(), 'content/pages')
+const BLOG_DIR       = path.join(process.cwd(), 'content/blog')
+const PAGES_DIR      = path.join(process.cwd(), 'content/pages')
+const BLOG_IMAGE_DIR = path.join(process.cwd(), 'public/images/blog')
 
 export interface BlogPost {
   slug:        string
@@ -14,6 +15,17 @@ export interface BlogPost {
   author:      string
   published:   boolean
   content:     string
+  image:       string | null
+}
+
+/** public/images/blog/<slug>.(jpg|jpeg|png), checked with fs at build time. */
+function findBlogImage(slug: string): string | null {
+  for (const ext of ['jpg', 'jpeg', 'png']) {
+    if (fs.existsSync(path.join(BLOG_IMAGE_DIR, `${slug}.${ext}`))) {
+      return `/horen/v2/images/blog/${slug}.${ext}`
+    }
+  }
+  return null
 }
 
 export interface Page {
@@ -44,6 +56,7 @@ export function getAllBlogPosts(): BlogPost[] {
         author:    data.author    ?? 'HOREN Team',
         published: data.published ?? false,
         content,
+        image:     findBlogImage(slug),
       } as BlogPost
     })
     .filter(p => p.published)
@@ -67,6 +80,7 @@ export function getBlogPost(slug: string): BlogPost | null {
     author:    data.author    ?? 'HOREN Team',
     published: data.published ?? false,
     content,
+    image:     findBlogImage(slug),
   }
 }
 
