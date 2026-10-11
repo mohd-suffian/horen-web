@@ -17,6 +17,14 @@ export async function generateMetadata({ params }: Props) {
   return { title: `${post.title} | HOREN Blog`, description: post.excerpt }
 }
 
+// Inline markdown: links, bold, italic. Relative links like ../contact work with or without basePath.
+function inline(text: string) {
+  return text
+    .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/(^|[^*])\*([^*\s][^*]*?)\*(?!\*)/g, '$1<em>$2</em>')
+}
+
 // Very simple markdown renderer (no external deps needed for basic content)
 function renderMarkdown(content: string) {
   const lines = content.split('\n')
@@ -26,12 +34,12 @@ function renderMarkdown(content: string) {
   for (const line of lines) {
     if (line.startsWith('## ')) {
       if (inList) { html.push('</ul>'); inList = false }
-      html.push(`<h2>${line.slice(3)}</h2>`)
+      html.push(`<h2>${inline(line.slice(3))}</h2>`)
     } else if (line.startsWith('### ')) {
-      html.push(`<h3>${line.slice(4)}</h3>`)
+      html.push(`<h3>${inline(line.slice(4))}</h3>`)
     } else if (line.startsWith('- ')) {
       if (!inList) { html.push('<ul>'); inList = true }
-      html.push(`<li>${line.slice(2)}</li>`)
+      html.push(`<li>${inline(line.slice(2))}</li>`)
     } else if (line.startsWith('**') && line.endsWith('**')) {
       if (inList) { html.push('</ul>'); inList = false }
       html.push(`<p><strong>${line.slice(2, -2)}</strong></p>`)
@@ -39,9 +47,7 @@ function renderMarkdown(content: string) {
       if (inList) { html.push('</ul>'); inList = false }
     } else {
       if (inList) { html.push('</ul>'); inList = false }
-      // inline bold
-      const processed = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      html.push(`<p>${processed}</p>`)
+      html.push(`<p>${inline(line)}</p>`)
     }
   }
   if (inList) html.push('</ul>')
