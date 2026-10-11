@@ -1,9 +1,21 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useEffect, useRef, useCallback, useSyncExternalStore } from 'react'
 import Link from 'next/link'
 import { X } from 'lucide-react'
 import { trainers, type Trainer } from '@/lib/trainers'
+
+const HASH_EVENT = 'trainer-hash-change'
+function subscribe(cb: () => void) {
+  window.addEventListener('hashchange', cb)
+  window.addEventListener(HASH_EVENT, cb)
+  return () => {
+    window.removeEventListener('hashchange', cb)
+    window.removeEventListener(HASH_EVENT, cb)
+  }
+}
+const getHash = () => window.location.hash.slice(1)
+const getServerHash = () => ''
 
 function initials(name: string) {
   return name
@@ -15,21 +27,18 @@ function initials(name: string) {
 }
 
 export default function TrainerGrid() {
-  const [active, setActive] = useState<Trainer | null>(() => {
-    if (typeof window === 'undefined') return null
-    const hash = window.location.hash.replace('#', '')
-    return trainers.find(t => t.slug === hash) ?? null
-  })
+  const hash = useSyncExternalStore(subscribe, getHash, getServerHash)
+  const active = trainers.find(t => t.slug === hash) ?? null
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
   const close = useCallback(() => {
-    setActive(null)
     history.replaceState(null, '', window.location.pathname + window.location.search)
+    window.dispatchEvent(new Event(HASH_EVENT))
   }, [])
 
   const open = useCallback((trainer: Trainer) => {
-    setActive(trainer)
     history.replaceState(null, '', `#${trainer.slug}`)
+    window.dispatchEvent(new Event(HASH_EVENT))
   }, [])
 
   useEffect(() => {
