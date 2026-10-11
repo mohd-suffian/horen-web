@@ -6,6 +6,7 @@ import {
   MdGroup,
   MdArticle,
   MdPhoto,
+  MdCampaign,
   MdInbox,
   MdPersonSearch,
   MdBarChart,
@@ -52,6 +53,14 @@ const contentCards: DashboardCard[] = [
     Icon:  MdPhoto,
     badge: 'Phase 2',
     badgeClassName: 'bg-[#1A8C8C]/10 text-[#1A8C8C]',
+  },
+  {
+    label: 'Latest highlight',
+    desc:  'Homepage popup: poster, dates, on/off',
+    Icon:  MdCampaign,
+    badge: 'Live',
+    badgeClassName: 'bg-green-50 text-green-600',
+    href:  '/admin/highlight',
   },
 ]
 
