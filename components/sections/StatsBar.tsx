@@ -1,7 +1,7 @@
 export default function StatsBar() {
   const stats = [
     { num: '2019', label: 'Established' },
-    { num: '8+',   label: 'Expert Trainers' },
+    { num: '16',   label: 'Expert Trainers' },
     { num: '12+',  label: 'Hotel Partners' },
     { num: '8',    label: 'Training Categories' },
     { num: '100%', label: 'HRD Corp Claimable' },
