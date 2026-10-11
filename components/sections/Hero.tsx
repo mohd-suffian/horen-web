@@ -1,17 +1,36 @@
+import fs from 'fs'
+import path from 'path'
 import Link from 'next/link'
+import HeroCarousel from './HeroCarousel'
+
+const HERO_DIR = path.join(process.cwd(), 'public', 'images', 'hero')
+const HERO_FILE_RE = /^hero-.+\.(jpe?g|png)$/i
+const UNSPLASH_SLIDE = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80'
+
+function naturalCompare(a: string, b: string) {
+  return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
+}
+
+function getHeroSlides(): string[] {
+  let files: string[] = []
+  try {
+    files = fs.readdirSync(HERO_DIR).filter(f => HERO_FILE_RE.test(f)).sort(naturalCompare)
+  } catch {
+    files = []
+  }
+  return [UNSPLASH_SLIDE, ...files.map(f => `/horen/v2/images/hero/${f}`)]
+}
 
 export default function Hero() {
+  const slides = getHeroSlides()
+
   return (
-    <section
-      className="relative min-h-[560px] flex items-center bg-cover bg-center py-24 overflow-hidden"
-      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80')" }}
-    >
-      <div className="absolute inset-0 bg-[#0A3333]/72" />
+    <HeroCarousel slides={slides}>
       <div className="relative px-6 sm:px-10 w-full md:w-[60%] md:min-w-[680px]">
         <div className="flex items-center gap-3 mb-5">
           <span className="w-6 h-px bg-[#C9A84C]" />
           <p className="text-[10px] font-semibold tracking-[0.2em] uppercase text-[#C9A84C]">
-            Malaysia's Hospitality Training Specialist
+            Malaysia&apos;s Hospitality Training Specialist
           </p>
         </div>
         <h1 className="font-serif font-light text-white leading-[1.2] mb-5 text-4xl sm:text-5xl lg:text-6xl break-words">
@@ -38,6 +57,6 @@ export default function Hero() {
           </Link>
         </div>
       </div>
-    </section>
+    </HeroCarousel>
   )
 }
