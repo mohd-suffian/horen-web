@@ -4,7 +4,7 @@ excerpt: "AZ-900 is more than a beginner cert — it's a shared vocabulary that 
 date: "2026-08-12"
 category: "Cloud"
 author: "HOREN Team"
-published: true
+published: false
 ---
 
 Cloud adoption doesn't fail because of technology. It fails because people across the organisation — from IT to finance to operations — don't share a common understanding of what the cloud actually is.
