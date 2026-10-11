@@ -48,9 +48,9 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 h-[68px] flex items-center px-6 md:px-10">
-      <div className="w-full flex items-center">
+      <div className="w-full flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center">
         {/* Logo — far left */}
-        <Link href="/" className="flex items-center shrink-0">
+        <Link href="/" className="flex items-center shrink-0 lg:justify-self-start">
           <img
             src="/horen/v2/images/horen-logo5.png"
             alt="HOREN Training"
@@ -58,8 +58,8 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Nav links — left-aligned, right after the logo */}
-        <div className="hidden md:flex items-center gap-4 lg:gap-7 ml-6 lg:ml-10">
+        {/* Nav links — centred */}
+        <div className="hidden lg:flex items-center gap-5 xl:gap-7 lg:justify-self-center">
           <Link
             href="/"
             aria-current={isHome ? 'page' : undefined}
@@ -200,7 +200,7 @@ export default function Navbar() {
         </div>
 
         {/* Search + CTA — far right */}
-        <div className="hidden md:flex items-center gap-3 ml-auto">
+        <div className="hidden lg:flex items-center gap-3 lg:justify-self-end">
           {searchOpen ? (
             <div className="relative w-[220px]">
               <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -231,7 +231,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden ml-auto text-gray-600"
+          className="lg:hidden text-gray-600"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -241,7 +241,7 @@ export default function Navbar() {
 
       {/* Mobile drawer */}
       {open && (
-        <div className="fixed inset-0 top-[68px] bg-white md:hidden flex flex-col overflow-y-auto">
+        <div className="fixed inset-0 top-[68px] bg-white lg:hidden flex flex-col overflow-y-auto">
           <div className="px-6 py-5 flex flex-col gap-1 flex-1">
             {/* Search */}
             <div className="relative mb-4">
