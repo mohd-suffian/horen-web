@@ -11,11 +11,13 @@ const leaders = [
     name:  'Amir Shamodin',
     role:  'Managing Director',
     quote: "Real change happens when training connects to the work people do every day — that's the only standard we hold ourselves to.",
+    photo: 'amir.jpg',
   },
   {
     name:  'Felicia Phuah',
     role:  'Head of Training & Marketing',
     quote: 'Empathy is at the core of impactful training.',
+    photo: 'felicia.jpg',
   },
 ]
 
@@ -91,10 +93,14 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {leaders.map(l => (
               <div key={l.name} className="bg-white rounded-xl border border-gray-100 shadow-[0_2px_20px_rgba(0,0,0,0.06)] p-7">
-                <div className="w-16 h-16 rounded-full bg-[#1A8C8C]/15 flex items-center justify-center mb-5">
-                  <span className="font-serif text-xl text-[#1A8C8C]">
-                    {l.name.split(' ').map(n => n[0]).join('')}
-                  </span>
+                <div className="w-16 h-16 rounded-full bg-[#1A8C8C]/15 flex items-center justify-center mb-5 overflow-hidden">
+                  {l.photo ? (
+                    <img src={`/horen/v2/images/team/${l.photo}`} alt={l.name} className="w-full h-full rounded-full object-cover" />
+                  ) : (
+                    <span className="font-serif text-xl text-[#1A8C8C]">
+                      {l.name.split(' ').map(n => n[0]).join('')}
+                    </span>
+                  )}
                 </div>
                 <p className="font-serif text-xl text-dark mb-0.5">{l.name}</p>
                 <p className="text-xs font-semibold uppercase tracking-wide text-[#1A8C8C] mb-4">{l.role}</p>

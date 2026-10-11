@@ -1,12 +1,14 @@
 const trainers = [
   {
     initials: 'AS',
+    photo:    'amir.jpg',
     name:     'Amir Shamodin',
     role:     'Managing Director',
     quote:    '"Learning should change behaviour — not just tick a training box."',
   },
   {
     initials: 'FP',
+    photo:    'felicia.jpg',
     name:     'Felicia Phuah',
     role:     'Head of Training',
     quote:    '"Empathy is at the core of impactful training — we don\'t just teach; we transform."',
@@ -38,9 +40,13 @@ export default function AboutStrip() {
         <div className="flex gap-5 flex-shrink-0">
           {trainers.map((t) => (
             <div key={t.name} className="bg-white rounded-2xl overflow-hidden shadow-[0_2px_14px_rgba(0,0,0,0.06)] w-44">
-              {/* Photo placeholder */}
+              {/* Photo */}
               <div className="h-40 bg-teal-pale flex items-center justify-center">
-                <span className="font-serif text-3xl text-teal">{t.initials}</span>
+                {t.photo ? (
+                  <img src={`/horen/v2/images/team/${t.photo}`} alt={t.name} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="font-serif text-3xl text-teal">{t.initials}</span>
+                )}
               </div>
               <div className="p-4">
                 <p className="font-semibold text-sm text-dark">{t.name}</p>
