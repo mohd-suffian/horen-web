@@ -1,7 +1,7 @@
 ---
 title: "Practical AI for hotel teams: where to start"
 excerpt: "Skip the hype. Start with the repetitive tasks your team already does every day, put sensible guardrails in place, and build from there."
-date: "2026-10-11"
+date: "2026-11-03"
 category: "Productivity"
 author: "HOREN Team"
 published: true

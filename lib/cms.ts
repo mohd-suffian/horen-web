@@ -18,6 +18,13 @@ export interface BlogPost {
   image:       string | null
 }
 
+// A post with a future date stays hidden until that day (Malaysia time).
+function isVisible(published: boolean, date: string): boolean {
+  if (!published) return false
+  const today = new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Kuala_Lumpur' })
+  return date <= today
+}
+
 /** public/images/blog/<slug>.(jpg|jpeg|png), checked with fs at build time. */
 function findBlogImage(slug: string): string | null {
   for (const ext of ['jpg', 'jpeg', 'png']) {
@@ -59,7 +66,7 @@ export function getAllBlogPosts(): BlogPost[] {
         image:     findBlogImage(slug),
       } as BlogPost
     })
-    .filter(p => p.published)
+    .filter(p => isVisible(p.published, p.date))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 }
 
@@ -71,14 +78,18 @@ export function getBlogPost(slug: string): BlogPost | null {
 
   const raw = fs.readFileSync(filePath, 'utf-8')
   const { data, content } = matter(raw)
+  const published = data.published ?? false
+  const date = data.date ?? ''
+  if (!isVisible(published, date)) return null
+
   return {
     slug,
     title:     data.title     ?? 'Untitled',
     excerpt:   data.excerpt   ?? '',
-    date:      data.date      ?? '',
+    date,
     category:  data.category  ?? 'General',
     author:    data.author    ?? 'HOREN Team',
-    published: data.published ?? false,
+    published,
     content,
     image:     findBlogImage(slug),
   }

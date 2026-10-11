@@ -9,6 +9,9 @@ export const metadata = {
   description: 'Training news, programme launches and industry insights from HOREN.',
 }
 
+// Re-check scheduled publish dates at most once an hour, without a manual rebuild.
+export const revalidate = 3600
+
 export default function BlogPage() {
   const posts = getAllBlogPosts()
 

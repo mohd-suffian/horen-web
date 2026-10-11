@@ -8,6 +8,9 @@ interface Props {
   params: Promise<{ slug: string }>
 }
 
+// Re-check scheduled publish dates at most once an hour, without a manual rebuild.
+export const revalidate = 3600
+
 export async function generateStaticParams() {
   return getAllBlogPosts().map(p => ({ slug: p.slug }))
 }
