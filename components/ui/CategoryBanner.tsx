@@ -7,11 +7,13 @@ export default function CategoryBanner({
   icon,
   count,
   image,
+  colors,
   size = 'card',
 }: {
   icon: string
   count: number
   image?: string
+  colors: { from: string; to: string }
   size?: 'card' | 'page'
 }) {
   const Icon = ICON_MAP[icon] ?? Icons.BookOpen
@@ -19,7 +21,10 @@ export default function CategoryBanner({
   const iconSize = size === 'page' ? 110 : 80
 
   return (
-    <div className={`relative ${heightClass} overflow-hidden bg-gradient-to-br from-[#1A8C8C] to-[#0A3333]`}>
+    <div
+      className={`relative ${heightClass} overflow-hidden`}
+      style={{ background: `linear-gradient(135deg, ${colors.from}, ${colors.to})` }}
+    >
       {image && (
         <>
           {/* eslint-disable-next-line @next/next/no-img-element -- plain img for basePath, same as rest of site */}
@@ -29,7 +34,7 @@ export default function CategoryBanner({
             loading="lazy"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1A8C8C]/85 to-[#0A3333]/90" />
+          <div className="absolute inset-0" style={{ backgroundColor: colors.to, opacity: 0.7 }} />
         </>
       )}
       <Icon

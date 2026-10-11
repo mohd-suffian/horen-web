@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { categories, totalProgrammesRounded } from '@/lib/programmes'
+import { categories, totalProgrammesRounded, textColorFor } from '@/lib/programmes'
 import CategoryBanner from '@/components/ui/CategoryBanner'
 
 export default function ProgrammesPage() {
@@ -23,42 +23,56 @@ export default function ProgrammesPage() {
       {/* Category grid */}
       <div className="max-w-6xl mx-auto px-6 md:px-10 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {categories.map((c) => (
-            <div
-              key={c.slug}
-              id={c.slug}
-              className="bg-white rounded-xl border border-gray-100 shadow-[0_2px_20px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col scroll-mt-20"
-            >
-              <CategoryBanner icon={c.icon} count={c.count} image={c.image} size="page" />
-              <div className="p-7 flex flex-col flex-1">
-                <h2 className="font-serif text-2xl text-dark leading-snug mb-1.5">{c.name}</h2>
-                <p className="text-sm text-gray-500 mb-5">{c.desc}</p>
+          {categories.map((c) => {
+            const textColor = textColorFor(c)
+            return (
+              <div
+                key={c.slug}
+                id={c.slug}
+                className="bg-white rounded-xl border border-gray-100 shadow-[0_2px_20px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col scroll-mt-20"
+              >
+                <CategoryBanner icon={c.icon} count={c.count} image={c.image} colors={c.colors} size="page" />
+                <div className="p-7 flex flex-col flex-1">
+                  <h2 className="font-serif text-2xl text-dark leading-snug mb-1.5">{c.name}</h2>
+                  <p className="text-sm text-gray-500 mb-5">{c.desc}</p>
 
-                <ul className="flex flex-col gap-2 mb-2">
-                  {c.programmes.slice(0, 4).map((p) => (
-                    <li key={p} className="text-sm text-gray-600 leading-snug pl-3 border-l-2 border-gray-100">
-                      {p}
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="flex flex-col gap-2 mb-2">
+                    {c.programmes.slice(0, 4).map((p) => (
+                      <li
+                        key={p}
+                        className="text-sm text-gray-600 leading-snug pl-3 border-l-2"
+                        style={{ borderColor: c.colors.from }}
+                      >
+                        {p}
+                      </li>
+                    ))}
+                  </ul>
 
-                {c.programmes.length > 4 && (
-                  <details className="mt-2 group">
-                    <summary className="text-sm font-semibold text-[#1A8C8C] hover:opacity-80 cursor-pointer list-none">
-                      View all {c.programmes.length} programmes →
-                    </summary>
-                    <ul className="flex flex-col gap-2 mt-3">
-                      {c.programmes.slice(4).map((p) => (
-                        <li key={p} className="text-sm text-gray-600 leading-snug pl-3 border-l-2 border-gray-100">
-                          {p}
-                        </li>
-                      ))}
-                    </ul>
-                  </details>
-                )}
+                  {c.programmes.length > 4 && (
+                    <details className="mt-2 group">
+                      <summary
+                        className="text-sm font-semibold hover:opacity-80 cursor-pointer list-none"
+                        style={{ color: textColor }}
+                      >
+                        View all {c.programmes.length} programmes →
+                      </summary>
+                      <ul className="flex flex-col gap-2 mt-3">
+                        {c.programmes.slice(4).map((p) => (
+                          <li
+                            key={p}
+                            className="text-sm text-gray-600 leading-snug pl-3 border-l-2"
+                            style={{ borderColor: c.colors.from }}
+                          >
+                            {p}
+                          </li>
+                        ))}
+                      </ul>
+                    </details>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
 

@@ -5,6 +5,7 @@ export interface ProgrammeCategory {
   count: number
   desc: string
   image?: string   // file in public/images/programmes/
+  colors: { from: string; to: string }
   programmes: string[]
 }
 
@@ -15,6 +16,7 @@ export const categories: ProgrammeCategory[] = [
     icon: 'Crown',
     count: 6,
     desc: 'For hotel executives, supervisors and department heads.',
+    colors: { from: '#1E2D3D', to: '#34506B' },
     programmes: [
       'Strategic Change Leadership for Hotel Executives: Driving Transformation & Resilience [2Days]',
       'Integrity-Driven Leadership for Corporate Success [2Days]',
@@ -30,6 +32,7 @@ export const categories: ProgrammeCategory[] = [
     icon: 'MessageCircle',
     count: 6,
     desc: 'Influence, persuasion, presentation and Mandarin for hoteliers.',
+    colors: { from: '#1A8C8C', to: '#0A3333' },
     programmes: [
       'Mastering Influence and Persuasion Strategies in Hospitality [2Days]',
       'Present Like a Pro: Practical Tools to Captivate Any Audience [2Days]',
@@ -45,6 +48,7 @@ export const categories: ProgrammeCategory[] = [
     icon: 'UsersRound',
     count: 7,
     desc: 'Cross-generational collaboration, cinematic synergy, GREAT and BUILD formats.',
+    colors: { from: '#C9A84C', to: '#8A6D1F' },
     programmes: [
       'G.R.E.A.T. Team Building Program - Hotel Leadership Edition (Cross Generational Collaboration) [HalfDay]',
       'B.U.I.L.D Team Building Program: Strengthening People, Powering Performance [2Days]',
@@ -61,6 +65,7 @@ export const categories: ProgrammeCategory[] = [
     icon: 'Sparkles',
     count: 12,
     desc: 'AI for hotel operations, Excel payroll, Canva, time management.',
+    colors: { from: '#4338A0', to: '#1E1B5E' },
     programmes: [
       'AI for Hotel Operations [1Day or 2Days]',
       'AI Made Simple for Hotel Management & Essential Operations [1Day or 2Days]',
@@ -82,6 +87,7 @@ export const categories: ProgrammeCategory[] = [
     icon: 'HeartHandshake',
     count: 7,
     desc: 'Emotional intelligence, mental health first aid, EQ in the age of AI.',
+    colors: { from: '#3E8E6B', to: '#1F5440' },
     programmes: [
       'Emotional Intelligence (EQ) For the Workplace [1Day]',
       'Eat Well, Think Better, Live Stronger [1Day]',
@@ -98,6 +104,7 @@ export const categories: ProgrammeCategory[] = [
     icon: 'ShieldCheck',
     count: 3,
     desc: 'Data protection, anti-sexual harassment.',
+    colors: { from: '#2B5C8A', to: '#12304F' },
     programmes: [
       'Personal Data Protection for Hoteliers: Safeguarding Guest Trust in a Digital Era [1Day]',
       'Data Protection Excellence Program for Hotel Leaders [2Days]',
@@ -110,6 +117,7 @@ export const categories: ProgrammeCategory[] = [
     icon: 'ConciergeBell',
     count: 10,
     desc: 'Guest engagement, VIP services, F&B mastery, ABC housekeeping.',
+    colors: { from: '#B5543A', to: '#6E2C1B' },
     programmes: [
       'The Art of Exceptional Communication in Service Excellence for Hotelier [1Day]',
       'Hospitality Masterclass: Crafting 5 Star Moments Experiential Workshop [1Day]',
@@ -129,6 +137,7 @@ export const categories: ProgrammeCategory[] = [
     icon: 'TrendingUp',
     count: 11,
     desc: 'Grooming, NLP, revenue management, digital brand leadership.',
+    colors: { from: '#7A4A8A', to: '#43245A' },
     programmes: [
       'The Signature Look & Service Touch: Grooming, Etiquette & Guest Relations For 5-Star Hospitality [2Days]',
       'Level Up Your Brand Image & Business Etiquette for Hotel Industry [1Day]',
@@ -149,3 +158,29 @@ export const totalProgrammes = categories.reduce((sum, c) => sum + c.programmes.
 
 /** Rounded down to the nearest 5 so the headline never claims more than the data shows. */
 export const totalProgrammesRounded = Math.floor(totalProgrammes / 5) * 5
+
+// ── Contrast-aware text colour ──────────────────────────
+// A category's `from` colour is used for text on white where possible. If it
+// falls below WCAG AA (4.5:1) for normal text, its darker `to` colour is used
+// instead (every `to` value here clears 4.5:1 on its own).
+
+function linearizeChannel(c: number): number {
+  const v = c / 255
+  return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4
+}
+
+function relativeLuminance(hex: string): number {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return 0.2126 * linearizeChannel(r) + 0.7152 * linearizeChannel(g) + 0.0722 * linearizeChannel(b)
+}
+
+function contrastRatioVsWhite(hex: string): number {
+  return 1.05 / (relativeLuminance(hex) + 0.05)
+}
+
+/** The colour to use for text on white for this category: `from` if it clears 4.5:1, else `to`. */
+export function textColorFor(category: ProgrammeCategory): string {
+  return contrastRatioVsWhite(category.colors.from) >= 4.5 ? category.colors.from : category.colors.to
+}
