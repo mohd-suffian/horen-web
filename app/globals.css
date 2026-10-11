@@ -111,6 +111,16 @@ h1, h2, h3, h4 {
   transform: scaleX(1);
 }
 
+/* Active page/section: gold underline stays on, text goes darker */
+.nav-link-active {
+  color: #0A3333;
+}
+
+.nav-link-active::after {
+  background: #C9A84C;
+  transform: scaleX(1);
+}
+
 /* Prose styles for blog */
 .prose h2 { font-family: var(--font-serif); margin-top: 2rem; }
 .prose p  { color: var(--muted); line-height: 1.8; }

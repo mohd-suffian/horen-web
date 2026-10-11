@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { Menu, X, Search, ChevronDown } from 'lucide-react'
 import navConfig from '@/public/data/nav-config.json'
 
@@ -25,17 +26,31 @@ const programmeColumns = columnOrder
   .map(col => ({ col, items: programmeItems.filter(i => i.column === col) }))
   .filter(c => c.items.length > 0)
 
+/** True if pathname is exactly base, or a sub-path of it. */
+function isSection(pathname: string, base: string) {
+  return pathname === base || pathname.startsWith(`${base}/`)
+}
+
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
   const [searchOpen, setSearchOpen] = useState(false)
+  const pathname = usePathname()
+
+  const isHome = pathname === '/'
+  const isAbout = isSection(pathname, '/about')
+  const isProgrammes = isSection(pathname, '/programmes')
+  const isClientele = isSection(pathname, '/clientele')
+  const isGallery = isSection(pathname, '/gallery')
+  const isBlog = isSection(pathname, '/blog')
+  const isJoinUs = joinUsItem ? isSection(pathname, '/careers') : false
 
   return (
     <nav className="sticky top-0 z-50 bg-white border-b border-gray-100 h-[68px] flex items-center px-6 md:px-10">
-      <div className="w-full flex items-center justify-between">
+      <div className="w-full flex items-center">
         {/* Logo — far left */}
-        <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center shrink-0">
           <img
             src="/horen/v2/images/horen-logo5.png"
             alt="HOREN Training"
@@ -43,15 +58,23 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Nav links — center */}
-        <div className="hidden md:flex items-center gap-7">
+        {/* Nav links — left-aligned, right after the logo */}
+        <div className="hidden md:flex items-center gap-4 lg:gap-7 ml-6 lg:ml-10">
+          <Link
+            href="/"
+            aria-current={isHome ? 'page' : undefined}
+            className={`nav-link font-medium text-gray-500 px-0.5 ${isHome ? 'nav-link-active' : ''}`}
+          >
+            Home
+          </Link>
+
           {/* About dropdown */}
           <div
             className="relative"
             onMouseEnter={() => setActiveMenu('About')}
             onMouseLeave={() => setActiveMenu(null)}
           >
-            <button className="nav-link font-medium text-gray-500 px-0.5 flex items-center gap-1">
+            <button className={`nav-link font-medium text-gray-500 px-0.5 flex items-center gap-1 ${isAbout ? 'nav-link-active' : ''}`}>
               About
               <ChevronDown size={14} />
             </button>
@@ -80,7 +103,11 @@ export default function Navbar() {
             onMouseEnter={() => setActiveMenu('Programmes')}
             onMouseLeave={() => setActiveMenu(null)}
           >
-            <Link href="/programmes" className="nav-link font-medium text-gray-500 px-0.5 flex items-center gap-1">
+            <Link
+              href="/programmes"
+              aria-current={isProgrammes ? 'page' : undefined}
+              className={`nav-link font-medium text-gray-500 px-0.5 flex items-center gap-1 ${isProgrammes ? 'nav-link-active' : ''}`}
+            >
               Programmes
               <ChevronDown size={14} />
             </Link>
@@ -124,7 +151,7 @@ export default function Navbar() {
             onMouseEnter={() => setActiveMenu('Clientele')}
             onMouseLeave={() => setActiveMenu(null)}
           >
-            <button className="nav-link font-medium text-gray-500 px-0.5 flex items-center gap-1">
+            <button className={`nav-link font-medium text-gray-500 px-0.5 flex items-center gap-1 ${isClientele ? 'nav-link-active' : ''}`}>
               Clientele
               <ChevronDown size={14} />
             </button>
@@ -147,15 +174,33 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Link href="/gallery" className="nav-link font-medium text-gray-500 px-0.5">Gallery</Link>
-          <Link href="/blog" className="nav-link font-medium text-gray-500 px-0.5">Blog</Link>
+          <Link
+            href="/gallery"
+            aria-current={isGallery ? 'page' : undefined}
+            className={`nav-link font-medium text-gray-500 px-0.5 ${isGallery ? 'nav-link-active' : ''}`}
+          >
+            Gallery
+          </Link>
+          <Link
+            href="/blog"
+            aria-current={isBlog ? 'page' : undefined}
+            className={`nav-link font-medium text-gray-500 px-0.5 ${isBlog ? 'nav-link-active' : ''}`}
+          >
+            Blog
+          </Link>
           {joinUsItem && (
-            <Link href={joinUsItem.href} className="nav-link font-medium text-gray-500 px-0.5">{joinUsItem.label}</Link>
+            <Link
+              href={joinUsItem.href}
+              aria-current={isJoinUs ? 'page' : undefined}
+              className={`nav-link font-medium text-gray-500 px-0.5 ${isJoinUs ? 'nav-link-active' : ''}`}
+            >
+              {joinUsItem.label}
+            </Link>
           )}
         </div>
 
         {/* Search + CTA — far right */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3 ml-auto">
           {searchOpen ? (
             <div className="relative w-[220px]">
               <Search size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -186,7 +231,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden text-gray-600"
+          className="md:hidden ml-auto text-gray-600"
           onClick={() => setOpen(!open)}
           aria-label="Toggle menu"
         >
@@ -208,6 +253,15 @@ export default function Navbar() {
               />
             </div>
 
+            <Link
+              href="/"
+              onClick={() => setOpen(false)}
+              aria-current={isHome ? 'page' : undefined}
+              className={`py-3.5 text-sm border-b border-gray-100 ${isHome ? 'text-[#0A3333] font-semibold' : 'text-gray-700 font-medium'}`}
+            >
+              Home
+            </Link>
+
             {/* About accordion */}
             <MobileAccordion
               label="About"
@@ -215,13 +269,14 @@ export default function Navbar() {
               onToggle={() => setMobileExpanded(mobileExpanded === 'About' ? null : 'About')}
               items={aboutItems}
               onNavigate={() => setOpen(false)}
+              active={isAbout}
             />
 
             {/* Programmes accordion */}
             <div className="border-b border-gray-100">
               <button
                 onClick={() => setMobileExpanded(mobileExpanded === 'Programmes' ? null : 'Programmes')}
-                className="w-full flex items-center justify-between py-3.5 text-sm font-medium text-gray-700"
+                className={`w-full flex items-center justify-between py-3.5 text-sm ${isProgrammes ? 'text-[#0A3333] font-semibold' : 'text-gray-700 font-medium'}`}
               >
                 Programmes
                 <ChevronDown
@@ -266,19 +321,22 @@ export default function Navbar() {
               onToggle={() => setMobileExpanded(mobileExpanded === 'Clientele' ? null : 'Clientele')}
               items={clienteleItems}
               onNavigate={() => setOpen(false)}
+              active={isClientele}
             />
 
             <Link
               href="/gallery"
               onClick={() => setOpen(false)}
-              className="py-3.5 text-sm font-medium text-gray-700 border-b border-gray-100"
+              aria-current={isGallery ? 'page' : undefined}
+              className={`py-3.5 text-sm border-b border-gray-100 ${isGallery ? 'text-[#0A3333] font-semibold' : 'text-gray-700 font-medium'}`}
             >
               Gallery
             </Link>
             <Link
               href="/blog"
               onClick={() => setOpen(false)}
-              className="py-3.5 text-sm font-medium text-gray-700 border-b border-gray-100"
+              aria-current={isBlog ? 'page' : undefined}
+              className={`py-3.5 text-sm border-b border-gray-100 ${isBlog ? 'text-[#0A3333] font-semibold' : 'text-gray-700 font-medium'}`}
             >
               Blog
             </Link>
@@ -286,7 +344,8 @@ export default function Navbar() {
               <Link
                 href={joinUsItem.href}
                 onClick={() => setOpen(false)}
-                className="py-3.5 text-sm font-medium text-gray-700 border-b border-gray-100"
+                aria-current={isJoinUs ? 'page' : undefined}
+                className={`py-3.5 text-sm border-b border-gray-100 ${isJoinUs ? 'text-[#0A3333] font-semibold' : 'text-gray-700 font-medium'}`}
               >
                 {joinUsItem.label}
               </Link>
@@ -315,18 +374,20 @@ function MobileAccordion({
   onToggle,
   items,
   onNavigate,
+  active,
 }: {
   label: string
   expanded: boolean
   onToggle: () => void
   items: NavLink[]
   onNavigate: () => void
+  active?: boolean
 }) {
   return (
     <div className="border-b border-gray-100">
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between py-3.5 text-sm font-medium text-gray-700"
+        className={`w-full flex items-center justify-between py-3.5 text-sm ${active ? 'text-[#0A3333] font-semibold' : 'text-gray-700 font-medium'}`}
       >
         {label}
         <ChevronDown size={16} className={`transition-transform ${expanded ? 'rotate-180' : ''}`} />
