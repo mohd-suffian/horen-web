@@ -2,29 +2,9 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { ImageIcon, X, ChevronLeft, ChevronRight } from 'lucide-react'
+import { categories, fullGallery, type Category } from '@/lib/gallery'
 
-const categories = ['All', 'Training Sessions', 'Team Building', 'Award Nights', 'Workshops'] as const
-type Category = typeof categories[number]
-
-interface GalleryItem {
-  label: string
-  category: Exclude<Category, 'All'>
-}
-
-const images: GalleryItem[] = [
-  { label: 'Featured Session',   category: 'Training Sessions' },
-  { label: 'Hotel Visit',        category: 'Training Sessions' },
-  { label: 'F&B Training',       category: 'Training Sessions' },
-  { label: 'Sunway Hotel',       category: 'Training Sessions' },
-  { label: 'Team Building',      category: 'Team Building' },
-  { label: 'Group Training',     category: 'Team Building' },
-  { label: 'SKS Session',        category: 'Team Building' },
-  { label: 'Award Night',        category: 'Award Nights' },
-  { label: 'MIDA Event',         category: 'Award Nights' },
-  { label: 'Workshop',           category: 'Workshops' },
-  { label: 'Leadership Session', category: 'Workshops' },
-  { label: 'Holiday Villa',      category: 'Workshops' },
-]
+const images = fullGallery
 
 export default function GalleryPage() {
   const [filter, setFilter] = useState<Category>('All')
@@ -91,9 +71,17 @@ export default function GalleryPage() {
               onClick={() => setLightboxIndex(i)}
               className="group relative aspect-square rounded-xl bg-[#1A8C8C] overflow-hidden cursor-pointer"
             >
-              <div className="absolute inset-0 flex items-center justify-center">
-                <ImageIcon size={28} className="text-white/40" />
-              </div>
+              {img.src ? (
+                <img
+                  src={`/horen/v2/images/gallery/${img.src}`}
+                  alt={img.label}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              ) : (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <ImageIcon size={28} className="text-white/40" />
+                </div>
+              )}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/55 transition-colors flex items-center justify-center">
                 <span className="text-white text-sm font-medium text-center px-3 opacity-0 group-hover:opacity-100 transition-opacity">
                   {img.label}
@@ -127,8 +115,16 @@ export default function GalleryPage() {
           </button>
 
           <div className="flex flex-col items-center" onClick={e => e.stopPropagation()}>
-            <div className="w-[min(80vw,560px)] aspect-square rounded-xl bg-[#1A8C8C] flex items-center justify-center">
-              <ImageIcon size={56} className="text-white/40" />
+            <div className="w-[min(80vw,560px)] aspect-square rounded-xl bg-[#1A8C8C] flex items-center justify-center overflow-hidden">
+              {filtered[lightboxIndex].src ? (
+                <img
+                  src={`/horen/v2/images/gallery/${filtered[lightboxIndex].src}`}
+                  alt={filtered[lightboxIndex].label}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <ImageIcon size={56} className="text-white/40" />
+              )}
             </div>
             <p className="text-white text-sm font-medium mt-5">{filtered[lightboxIndex].label}</p>
           </div>
