@@ -7,6 +7,7 @@ import AboutStrip  from '@/components/sections/AboutStrip'
 import Testimonials from '@/components/sections/Testimonials'
 import CtaBlock    from '@/components/sections/CtaBlock'
 import Gallery from '@/components/sections/Gallery'
+import HighlightPopup from '@/components/sections/HighlightPopup'
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Testimonials />
       <Gallery />
       <CtaBlock />
+      <HighlightPopup />
     </>
   )
 }
