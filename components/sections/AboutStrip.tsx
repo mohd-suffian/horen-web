@@ -37,9 +37,9 @@ export default function AboutStrip() {
         </div>
 
         {/* Trainer cards */}
-        <div className="flex gap-5 flex-shrink-0">
+        <div className="grid grid-cols-2 gap-4 w-full md:flex md:gap-5 md:w-auto md:flex-shrink-0">
           {trainers.map((t) => (
-            <div key={t.name} className="bg-white rounded-2xl overflow-hidden shadow-[0_2px_14px_rgba(0,0,0,0.06)] w-44">
+            <div key={t.name} className="bg-white rounded-2xl overflow-hidden shadow-[0_2px_14px_rgba(0,0,0,0.06)] w-full md:w-44">
               {/* Photo */}
               <div className="h-40 bg-teal-pale flex items-center justify-center">
                 {t.photo ? (
