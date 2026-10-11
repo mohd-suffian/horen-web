@@ -6,7 +6,6 @@ import { focusFor, type HeroSlide } from '@/lib/hero'
 
 const HERO_DIR = path.join(process.cwd(), 'public', 'images', 'hero')
 const HERO_FILE_RE = /^hero-.+\.(jpe?g|png)$/i
-const UNSPLASH_SLIDE = 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1920&q=80'
 
 function naturalCompare(a: string, b: string) {
   return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
@@ -19,10 +18,7 @@ function getHeroSlides(): HeroSlide[] {
   } catch {
     files = []
   }
-  return [
-    { src: UNSPLASH_SLIDE, focus: 'center' },
-    ...files.map(f => ({ src: `/horen/v2/images/hero/${f}`, focus: focusFor(f) })),
-  ]
+  return files.map(f => ({ src: `/horen/v2/images/hero/${f}`, focus: focusFor(f) }))
 }
 
 export default function Hero() {
