@@ -9,7 +9,7 @@ export const homeGallery: HomeGalleryItem[] = [
   { label: 'Featured photo', hint: 'Upload hero shot', large: true, src: '' },
   { label: 'Training session', src: '' },
   { label: 'Team building', src: '' },
-  { label: 'Award night', src: '' },
+  { label: 'Award night', src: 'award-recognition.jpg' },
   { label: 'Workshop', src: '' },
   { label: 'Group session', src: '' },
 ]
@@ -31,7 +31,7 @@ export const fullGallery: FullGalleryItem[] = [
   { label: 'Team Building',      category: 'Team Building',     src: '' },
   { label: 'Group Training',     category: 'Team Building',     src: '' },
   { label: 'SKS Session',        category: 'Team Building',     src: '' },
-  { label: 'Award Night',        category: 'Award Nights',      src: '' },
+  { label: 'Award Night',        category: 'Award Nights',      src: 'award-recognition.jpg' },
   { label: 'MIDA Event',         category: 'Award Nights',      src: '' },
   { label: 'Workshop',           category: 'Workshops',         src: '' },
   { label: 'Leadership Session', category: 'Workshops',         src: '' },
