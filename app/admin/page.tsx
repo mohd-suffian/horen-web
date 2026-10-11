@@ -1,5 +1,6 @@
 import { redirect } from 'next/navigation'
 import { isAuthenticated } from '@/lib/auth'
+import { ADMIN_VERSION } from '@/lib/version'
 import Link from 'next/link'
 import {
   MdGridView,
@@ -191,6 +192,18 @@ export default async function AdminDashboard() {
         <CardSection label="Phase 2 — Content Management" cards={contentCards} />
         <CardSection label="Phase 3 — CRM" cards={crmCards} />
         <CardSection label="System" cards={systemCards} />
+
+        <div className="mt-4 pt-6 border-t border-gray-100 text-xs text-gray-400">
+          Admin v{ADMIN_VERSION} <span className="text-gray-300">·</span> Powered by{' '}
+          <a
+            href="https://kltech.my"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer hover:text-gray-600 hover:underline transition-colors"
+          >
+            KLtech.my
+          </a>
+        </div>
       </div>
     </div>
   )

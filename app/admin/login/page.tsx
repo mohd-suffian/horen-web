@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { ADMIN_VERSION } from '@/lib/version'
 
 export default function AdminLogin() {
   const [password, setPassword] = useState('')
@@ -63,6 +64,18 @@ export default function AdminLogin() {
             {loading ? 'Signing in…' : 'Sign in'}
           </button>
         </form>
+
+        <p className="text-xs text-gray-400 mt-6 text-center">
+          Admin v{ADMIN_VERSION} <span className="text-gray-300">·</span> Powered by{' '}
+          <a
+            href="https://kltech.my"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer hover:text-gray-600 hover:underline transition-colors"
+          >
+            KLtech.my
+          </a>
+        </p>
       </div>
     </div>
   )

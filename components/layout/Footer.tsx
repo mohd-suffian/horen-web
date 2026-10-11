@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { FaLinkedin, FaFacebook } from 'react-icons/fa'
+import { SITE_VERSION } from '@/lib/version'
 
 const quickLinks = [
   { label: 'Home',       href: '/' },
@@ -108,7 +109,21 @@ export default function Footer() {
 
         <div className="border-t border-white/[0.08] pt-5 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-xs text-white/28">© 2026 HOREN Training Sdn Bhd. All rights reserved.</p>
-          <p className="text-xs text-white/28">Kuala Lumpur, Malaysia</p>
+          <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-3">
+            <p className="text-xs text-white/28">Kuala Lumpur, Malaysia</p>
+            <span className="hidden sm:inline text-white/20">·</span>
+            <p className="text-xs text-white/28">
+              v{SITE_VERSION} <span className="text-white/20">·</span> Powered by{' '}
+              <a
+                href="https://kltech.my"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cursor-pointer hover:text-white/50 hover:underline transition-colors"
+              >
+                KLtech.my
+              </a>
+            </p>
+          </div>
         </div>
       </div>
     </footer>
