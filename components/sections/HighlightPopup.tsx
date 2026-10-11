@@ -1,57 +1,66 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { currentHighlight, isHighlightActive } from '@/lib/highlights'
 
-const AUTO_OPEN_DELAY_MS = 8000
-const noopSubscribe = () => () => {}
-
-function seenKey(id: string) {
-  return `horen-highlight-seen:${id}`
+interface LiveHighlight {
+  version: string
+  label: string
+  title: string
+  imageUrl: string
+  imageAlt: string
+  autoOpen: boolean
+  autoOpenDelaySec: number
+  linkLabel: string
+  linkUrl: string
 }
 
-function hasSeen(id: string) {
+function seenKey(version: string) {
+  return `horen-highlight-seen:${version}`
+}
+
+function hasSeen(version: string) {
   try {
-    return window.localStorage.getItem(seenKey(id)) === '1'
+    return window.localStorage.getItem(seenKey(version)) === '1'
   } catch {
     return false
   }
 }
 
-function markSeen(id: string) {
+function markSeen(version: string) {
   try {
-    window.localStorage.setItem(seenKey(id), '1')
+    window.localStorage.setItem(seenKey(version), '1')
   } catch {
     // storage blocked (private mode etc.): popup may show again next visit, which is fine
   }
 }
 
 export default function HighlightPopup() {
-  // Server render and first client render both return false, so there is no hydration
-  // mismatch, and an expired campaign never flashes from the static HTML.
-  const active = useSyncExternalStore(
-    noopSubscribe,
-    () => isHighlightActive(currentHighlight),
-    () => false,
-  )
-  const h = active ? currentHighlight : null
-
+  // Starts null on both server and first client render (fetched after mount),
+  // so there is no hydration mismatch.
+  const [h, setH] = useState<LiveHighlight | null>(null)
   const [open, setOpen] = useState(false)
   const closeRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    fetch('/horen/v2/api/highlight')
+      .then(res => res.json())
+      .then(data => setH(data.highlight ?? null))
+      .catch(() => setH(null))
+  }, [])
 
   const show = useCallback(() => {
     if (!h) return
     setOpen(true)
-    markSeen(h.id)
+    markSeen(h.version)
   }, [h])
 
   const close = useCallback(() => setOpen(false), [])
 
-  // Auto-open once per visitor per campaign
+  // Auto-open once per visitor per campaign version
   useEffect(() => {
-    if (!h || hasSeen(h.id)) return
-    const timer = window.setTimeout(show, AUTO_OPEN_DELAY_MS)
+    if (!h || !h.autoOpen || hasSeen(h.version)) return
+    const timer = window.setTimeout(show, h.autoOpenDelaySec * 1000)
     return () => window.clearTimeout(timer)
   }, [h, show])
 
@@ -69,6 +78,9 @@ export default function HighlightPopup() {
   }, [open, close])
 
   if (!h) return null
+
+  const hasExtraLink = h.linkLabel && h.linkUrl
+  const extraIsExternal = h.linkUrl.startsWith('https://')
 
   return (
     <>
@@ -114,36 +126,46 @@ export default function HighlightPopup() {
             </button>
 
             <div className="bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col min-h-0">
-            <div className="overflow-y-auto">
-              {/* eslint-disable-next-line @next/next/no-img-element -- plain img for basePath, same as rest of site */}
-              <img
-                src={`/horen/v2/images/highlights/${h.image}`}
-                alt={h.imageAlt}
-                className="block w-full h-auto"
-              />
-            </div>
+              <div className="overflow-y-auto">
+                {/* eslint-disable-next-line @next/next/no-img-element -- plain img for basePath, same as rest of site */}
+                <img
+                  src={h.imageUrl}
+                  alt={h.imageAlt}
+                  className="block w-full h-auto"
+                />
+              </div>
 
-            <div className="grid grid-cols-3 gap-2 p-3 border-t border-gray-100 bg-white">
-              <Link
-                href="/contact"
-                onClick={close}
-                className="col-span-3 sm:col-span-1 text-center bg-[#1A8C8C] text-white text-sm font-semibold py-2.5 rounded-lg hover:bg-[#157575] transition-colors"
-              >
-                Enquire now
-              </Link>
-              <a
-                href="tel:+60195825007"
-                className="col-span-3 sm:col-span-1 text-center border border-[#1A8C8C] text-[#1A8C8C] text-sm font-semibold py-2.5 rounded-lg hover:bg-[#1A8C8C]/5 transition-colors"
-              >
-                Call 019-582 5007
-              </a>
-              <a
-                href="mailto:info@horen.com.my?subject=Mental%20wellness%20training%20enquiry"
-                className="col-span-3 sm:col-span-1 text-center border border-[#1A8C8C] text-[#1A8C8C] text-sm font-semibold py-2.5 rounded-lg hover:bg-[#1A8C8C]/5 transition-colors"
-              >
-                Email us
-              </a>
-            </div>
+              <div className={`grid gap-2 p-3 border-t border-gray-100 bg-white ${hasExtraLink ? 'grid-cols-2 sm:grid-cols-4' : 'grid-cols-3'}`}>
+                <Link
+                  href="/contact"
+                  onClick={close}
+                  className={`text-center bg-[#1A8C8C] text-white text-sm font-semibold py-2.5 rounded-lg hover:bg-[#157575] transition-colors ${hasExtraLink ? 'col-span-2 sm:col-span-1' : 'col-span-3 sm:col-span-1'}`}
+                >
+                  Enquire now
+                </Link>
+                <a
+                  href="tel:+60195825007"
+                  className={`text-center border border-[#1A8C8C] text-[#1A8C8C] text-sm font-semibold py-2.5 rounded-lg hover:bg-[#1A8C8C]/5 transition-colors ${hasExtraLink ? 'col-span-1' : 'col-span-3 sm:col-span-1'}`}
+                >
+                  Call 019-582 5007
+                </a>
+                <a
+                  href="mailto:info@horen.com.my?subject=Mental%20wellness%20training%20enquiry"
+                  className={`text-center border border-[#1A8C8C] text-[#1A8C8C] text-sm font-semibold py-2.5 rounded-lg hover:bg-[#1A8C8C]/5 transition-colors ${hasExtraLink ? 'col-span-1' : 'col-span-3 sm:col-span-1'}`}
+                >
+                  Email us
+                </a>
+                {hasExtraLink && (
+                  <a
+                    href={h.linkUrl}
+                    target={extraIsExternal ? '_blank' : undefined}
+                    rel={extraIsExternal ? 'noopener noreferrer' : undefined}
+                    className="col-span-1 text-center border border-[#1A8C8C] text-[#1A8C8C] text-sm font-semibold py-2.5 rounded-lg hover:bg-[#1A8C8C]/5 transition-colors"
+                  >
+                    {h.linkLabel}
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         </div>
