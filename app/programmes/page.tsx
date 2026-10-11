@@ -1,16 +1,6 @@
 import Link from 'next/link'
-import { categories } from '@/lib/programmes'
-
-const categoryIds: Record<string, string> = {
-  'Leadership and Supervisory Skills':      'leadership',
-  'Communication Skills':                   'communication',
-  'Team Building':                          'team-building',
-  'AI, Excel and Productivity Tools':       'ai-productivity',
-  'Workplace Wellness and EQ':              'wellness',
-  'PDPA, Cybersecurity and Labour Law':     'pdpa',
-  'Service Excellence, F&B and Housekeeping': 'service-excellence',
-  'Sales, Marketing and Brand Image':       'sales-marketing',
-}
+import { categories, totalProgrammesRounded } from '@/lib/programmes'
+import CategoryBanner from '@/components/ui/CategoryBanner'
 
 export default function ProgrammesPage() {
   return (
@@ -18,11 +8,11 @@ export default function ProgrammesPage() {
       {/* Header */}
       <div className="bg-[#1A8C8C] py-20 px-6 md:px-10">
         <div className="max-w-5xl mx-auto">
-          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#1A8C8C] mb-3">
+          <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/70 mb-3">
             2026/27 Training Catalogue
           </p>
           <h1 className="font-serif text-4xl md:text-5xl text-white mb-4">
-            60+ programmes across 8 categories
+            {totalProgrammesRounded}+ programmes across {categories.length} categories
           </h1>
           <p className="text-white/70 text-base max-w-2xl leading-relaxed">
             All programmes are HRD Corp claimable under SBL-Khas. Delivered in-house at your property or in combined cohorts.
@@ -35,32 +25,38 @@ export default function ProgrammesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {categories.map((c) => (
             <div
-              key={c.name}
-              id={categoryIds[c.name]}
-              className="bg-white rounded-xl border border-gray-100 shadow-[0_2px_20px_rgba(0,0,0,0.06)] p-7 flex flex-col scroll-mt-20"
+              key={c.slug}
+              id={c.slug}
+              className="bg-white rounded-xl border border-gray-100 shadow-[0_2px_20px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col scroll-mt-20"
             >
-              <div className="flex items-start justify-between gap-4 mb-1.5">
-                <h2 className="font-serif text-2xl text-dark leading-snug">{c.name}</h2>
-                <span className="shrink-0 text-[11px] font-bold uppercase tracking-wide text-[#1A8C8C] bg-[#1A8C8C]/15 rounded-full px-2.5 py-1">
-                  {c.count}
-                </span>
+              <CategoryBanner icon={c.icon} count={c.count} image={c.image} size="page" />
+              <div className="p-7 flex flex-col flex-1">
+                <h2 className="font-serif text-2xl text-dark leading-snug mb-1.5">{c.name}</h2>
+                <p className="text-sm text-gray-500 mb-5">{c.desc}</p>
+
+                <ul className="flex flex-col gap-2 mb-2">
+                  {c.programmes.slice(0, 4).map((p) => (
+                    <li key={p} className="text-sm text-gray-600 leading-snug pl-3 border-l-2 border-gray-100">
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+
+                {c.programmes.length > 4 && (
+                  <details className="mt-2 group">
+                    <summary className="text-sm font-semibold text-[#1A8C8C] hover:opacity-80 cursor-pointer list-none">
+                      View all {c.programmes.length} programmes →
+                    </summary>
+                    <ul className="flex flex-col gap-2 mt-3">
+                      {c.programmes.slice(4).map((p) => (
+                        <li key={p} className="text-sm text-gray-600 leading-snug pl-3 border-l-2 border-gray-100">
+                          {p}
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
               </div>
-              <p className="text-sm text-gray-500 mb-5">{c.desc}</p>
-
-              <ul className="flex flex-col gap-2 mb-6">
-                {c.programmes.slice(0, 4).map((p) => (
-                  <li key={p} className="text-sm text-gray-600 leading-snug pl-3 border-l-2 border-gray-100">
-                    {p}
-                  </li>
-                ))}
-              </ul>
-
-              <Link
-                href={`#${categoryIds[c.name]}`}
-                className="mt-auto text-sm font-semibold text-[#1A8C8C] hover:opacity-80 self-start"
-              >
-                View programmes →
-              </Link>
             </div>
           ))}
         </div>

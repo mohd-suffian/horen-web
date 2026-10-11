@@ -1,6 +1,18 @@
-export const categories = [
+export interface ProgrammeCategory {
+  name: string
+  slug: string
+  icon: string
+  count: number
+  desc: string
+  image?: string   // file in public/images/programmes/
+  programmes: string[]
+}
+
+export const categories: ProgrammeCategory[] = [
   {
     name: 'Leadership and Supervisory Skills',
+    slug: 'leadership',
+    icon: 'Crown',
     count: 6,
     desc: 'For hotel executives, supervisors and department heads.',
     programmes: [
@@ -14,6 +26,8 @@ export const categories = [
   },
   {
     name: 'Communication Skills',
+    slug: 'communication',
+    icon: 'MessageCircle',
     count: 6,
     desc: 'Influence, persuasion, presentation and Mandarin for hoteliers.',
     programmes: [
@@ -27,6 +41,8 @@ export const categories = [
   },
   {
     name: 'Team Building',
+    slug: 'team-building',
+    icon: 'UsersRound',
     count: 7,
     desc: 'Cross-generational collaboration, cinematic synergy, GREAT and BUILD formats.',
     programmes: [
@@ -41,6 +57,8 @@ export const categories = [
   },
   {
     name: 'AI, Excel and Productivity Tools',
+    slug: 'ai-productivity',
+    icon: 'Sparkles',
     count: 12,
     desc: 'AI for hotel operations, Excel payroll, Canva, time management.',
     programmes: [
@@ -60,6 +78,8 @@ export const categories = [
   },
   {
     name: 'Workplace Wellness and EQ',
+    slug: 'wellness',
+    icon: 'HeartHandshake',
     count: 7,
     desc: 'Emotional intelligence, mental health first aid, EQ in the age of AI.',
     programmes: [
@@ -74,6 +94,8 @@ export const categories = [
   },
   {
     name: 'PDPA, Cybersecurity and Labour Law',
+    slug: 'pdpa',
+    icon: 'ShieldCheck',
     count: 3,
     desc: 'Data protection, anti-sexual harassment.',
     programmes: [
@@ -84,6 +106,8 @@ export const categories = [
   },
   {
     name: 'Service Excellence, F&B and Housekeeping',
+    slug: 'service-excellence',
+    icon: 'ConciergeBell',
     count: 10,
     desc: 'Guest engagement, VIP services, F&B mastery, ABC housekeeping.',
     programmes: [
@@ -101,6 +125,8 @@ export const categories = [
   },
   {
     name: 'Sales, Marketing and Brand Image',
+    slug: 'sales-marketing',
+    icon: 'TrendingUp',
     count: 11,
     desc: 'Grooming, NLP, revenue management, digital brand leadership.',
     programmes: [
@@ -118,3 +144,8 @@ export const categories = [
     ],
   },
 ]
+
+export const totalProgrammes = categories.reduce((sum, c) => sum + c.programmes.length, 0)
+
+/** Rounded down to the nearest 5 so the headline never claims more than the data shows. */
+export const totalProgrammesRounded = Math.floor(totalProgrammes / 5) * 5
