@@ -48,7 +48,7 @@ export const categories: ProgrammeCategory[] = [
     icon: 'UsersRound',
     count: 7,
     desc: 'Cross-generational collaboration, cinematic synergy, GREAT and BUILD formats.',
-    colors: { from: '#C9A84C', to: '#8A6D1F' },
+    colors: { from: '#A8832A', to: '#6E5516' },
     programmes: [
       'G.R.E.A.T. Team Building Program - Hotel Leadership Edition (Cross Generational Collaboration) [HalfDay]',
       'B.U.I.L.D Team Building Program: Strengthening People, Powering Performance [2Days]',

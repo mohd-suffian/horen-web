@@ -16,11 +16,10 @@ export default function Programmes() {
             <Link
               key={c.slug}
               href={`/programmes#${c.slug}`}
-              className="bg-white rounded-xl border border-gray-100 shadow-[0_2px_20px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col hover:shadow-[0_4px_24px_rgba(0,0,0,0.1)] transition-shadow"
+              className="bg-white rounded-xl border border-gray-100 shadow-[0_2px_20px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col hover:shadow-[0_4px_24px_rgba(0,0,0,0.1)] transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1A8C8C] focus-visible:ring-offset-2"
             >
-              <CategoryBanner icon={c.icon} count={c.count} image={c.image} colors={c.colors} size="card" />
+              <CategoryBanner icon={c.icon} count={c.count} image={c.image} colors={c.colors} title={c.name} titleAs="h3" size="card" />
               <div className="p-6 flex flex-col flex-1">
-                <h3 className="font-serif text-lg text-dark leading-snug mb-2">{c.name}</h3>
                 <p className="text-sm text-gray-500 leading-relaxed">{c.desc}</p>
               </div>
             </Link>

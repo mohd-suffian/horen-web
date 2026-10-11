@@ -8,21 +8,26 @@ export default function CategoryBanner({
   count,
   image,
   colors,
+  title,
+  titleAs = 'h3',
   size = 'card',
 }: {
   icon: string
   count: number
   image?: string
   colors: { from: string; to: string }
+  title: string
+  titleAs?: 'h2' | 'h3'
   size?: 'card' | 'page'
 }) {
   const Icon = ICON_MAP[icon] ?? Icons.BookOpen
-  const heightClass = size === 'page' ? 'h-32' : 'h-24'
-  const iconSize = size === 'page' ? 110 : 80
+  const minHeightClass = size === 'page' ? 'min-h-[11rem]' : 'min-h-[9rem]'
+  const titleSizeClass = size === 'page' ? 'text-2xl' : 'text-xl'
+  const TitleTag = titleAs
 
   return (
     <div
-      className={`relative ${heightClass} overflow-hidden`}
+      className={`relative ${minHeightClass} overflow-hidden flex flex-col justify-end`}
       style={{ background: `linear-gradient(135deg, ${colors.from}, ${colors.to})` }}
     >
       {image && (
@@ -37,15 +42,21 @@ export default function CategoryBanner({
           <div className="absolute inset-0" style={{ backgroundColor: colors.to, opacity: 0.7 }} />
         </>
       )}
+
       <Icon
-        className="absolute -right-3 -bottom-3 text-white/15"
-        size={iconSize}
+        className="absolute right-3 bottom-3 z-0 text-white/[0.18]"
+        size={64}
         strokeWidth={1.25}
         aria-hidden="true"
       />
-      <span className="absolute top-3 right-3 text-[11px] font-bold uppercase tracking-wide text-white bg-white/20 rounded-full px-2.5 py-1 backdrop-blur-sm">
+
+      <span className="absolute top-3 right-3 z-10 text-[11px] font-bold uppercase tracking-wide text-white bg-white/20 rounded-full px-2.5 py-1 backdrop-blur-sm">
         {count}
       </span>
+
+      <TitleTag className={`relative z-10 p-5 pr-16 font-serif ${titleSizeClass} leading-snug text-white`}>
+        {title}
+      </TitleTag>
     </div>
   )
 }

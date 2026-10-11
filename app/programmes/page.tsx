@@ -31,9 +31,8 @@ export default function ProgrammesPage() {
                 id={c.slug}
                 className="bg-white rounded-xl border border-gray-100 shadow-[0_2px_20px_rgba(0,0,0,0.06)] overflow-hidden flex flex-col scroll-mt-20"
               >
-                <CategoryBanner icon={c.icon} count={c.count} image={c.image} colors={c.colors} size="page" />
+                <CategoryBanner icon={c.icon} count={c.count} image={c.image} colors={c.colors} title={c.name} titleAs="h2" size="page" />
                 <div className="p-7 flex flex-col flex-1">
-                  <h2 className="font-serif text-2xl text-dark leading-snug mb-1.5">{c.name}</h2>
                   <p className="text-sm text-gray-500 mb-5">{c.desc}</p>
 
                   <ul className="flex flex-col gap-2 mb-2">
