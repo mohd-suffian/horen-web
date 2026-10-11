@@ -1,6 +1,7 @@
 import { notFound }         from 'next/navigation'
 import { getBlogPost, getAllBlogPosts } from '@/lib/cms'
 import { categoryIcons, DefaultCategoryIcon } from '@/components/ui/blog-category-icon'
+import { colorsFor } from '@/lib/blog-colors'
 import Link from 'next/link'
 
 interface Props {
@@ -62,6 +63,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   const htmlContent = renderMarkdown(post.content)
   const CategoryIcon = categoryIcons[post.category] ?? DefaultCategoryIcon
+  const colors = colorsFor(post.category)
 
   return (
     <div className="bg-white min-h-screen">
@@ -79,7 +81,10 @@ export default async function BlogPostPage({ params }: Props) {
             <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-black/10" />
           </>
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1A8C8C] to-[#0A3333] flex items-center justify-center">
+          <div
+            className="absolute inset-0 flex items-center justify-center"
+            style={{ background: `linear-gradient(135deg, ${colors.from}, ${colors.to})` }}
+          >
             <CategoryIcon size={72} className="text-white/15" strokeWidth={1.25} aria-hidden="true" />
           </div>
         )}
