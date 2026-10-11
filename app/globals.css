@@ -1,5 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300;1,400&family=Outfit:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Tailwind v4 ignores tailwind.config.ts, so brand colours are defined here */
+@theme {
+  --color-teal:       #1A8C8C;
+  --color-teal-light: #5DC6C6;
+  --color-teal-pale:  #E6F4F4;
+  --color-soft:       #F7F8FA;
+  --color-dark:       #1e2d3d;
+  --color-muted:      #6B7280;
+}
 
 @layer base {
   button:not(:disabled),
@@ -9,9 +20,9 @@
 }
 
 :root {
-  --teal:       #0EA5D8;
+  --teal:       #1A8C8C;
   --teal-light: #5DC6C6;
-  --teal-pale:  #E0F4FB;
+  --teal-pale:  #E6F4F4;
   --dark:       #1e2d3d;
   --muted:      #6B7280;
   --border:     #E9ECF0;
