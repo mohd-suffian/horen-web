@@ -47,7 +47,7 @@ export default function TeamPage() {
               key={t.name}
               className="bg-white rounded-xl border border-gray-100 shadow-[0_2px_20px_rgba(0,0,0,0.06)] p-6 flex flex-col items-center text-center"
             >
-              <div className="w-20 h-20 rounded-full bg-[#1A8C8C]/15 flex items-center justify-center mb-5 overflow-hidden">
+              <div className="w-20 h-20 rounded-full bg-[#1A8C8C]/15 flex items-center justify-center mb-5 overflow-hidden ring-1 ring-gray-200">
                 {t.photo ? (
                   <img src={`/horen/v2/images/team/${t.photo}`} alt={t.name} className="w-full h-full rounded-full object-cover" />
                 ) : (
