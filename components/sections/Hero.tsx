@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import Link from 'next/link'
 import HeroCarousel from './HeroCarousel'
+import { focusFor, type HeroSlide } from '@/lib/hero'
 
 const HERO_DIR = path.join(process.cwd(), 'public', 'images', 'hero')
 const HERO_FILE_RE = /^hero-.+\.(jpe?g|png)$/i
@@ -11,14 +12,17 @@ function naturalCompare(a: string, b: string) {
   return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
 }
 
-function getHeroSlides(): string[] {
+function getHeroSlides(): HeroSlide[] {
   let files: string[] = []
   try {
     files = fs.readdirSync(HERO_DIR).filter(f => HERO_FILE_RE.test(f)).sort(naturalCompare)
   } catch {
     files = []
   }
-  return [UNSPLASH_SLIDE, ...files.map(f => `/horen/v2/images/hero/${f}`)]
+  return [
+    { src: UNSPLASH_SLIDE, focus: 'center' },
+    ...files.map(f => ({ src: `/horen/v2/images/hero/${f}`, focus: focusFor(f) })),
+  ]
 }
 
 export default function Hero() {

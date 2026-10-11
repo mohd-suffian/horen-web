@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useSyncExternalStore, type ReactNode } from 'react'
+import type { HeroSlide } from '@/lib/hero'
 
 const INTERVAL_MS = 6000
 
@@ -12,7 +13,7 @@ function subscribeReducedMotion(callback: () => void) {
 const getReducedMotion = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 const getServerReducedMotion = () => false
 
-export default function HeroCarousel({ slides, children }: { slides: string[]; children: ReactNode }) {
+export default function HeroCarousel({ slides, children }: { slides: HeroSlide[]; children: ReactNode }) {
   const [index, setIndex] = useState(0)
   const [hovered, setHovered] = useState(false)
   const [focused, setFocused] = useState(false)
@@ -43,15 +44,15 @@ export default function HeroCarousel({ slides, children }: { slides: string[]; c
       onFocus={() => setFocused(true)}
       onBlur={() => setFocused(false)}
     >
-      {slides.map((src, i) => (
+      {slides.map((slide, i) => (
         /* eslint-disable-next-line @next/next/no-img-element -- plain img for basePath, same as rest of site */
         <img
-          key={src}
-          src={src}
+          key={slide.src}
+          src={slide.src}
           alt=""
           loading={i === 0 ? 'eager' : 'lazy'}
           className={`absolute inset-0 w-full h-full object-cover ${reducedMotion ? '' : 'transition-opacity duration-1000'}`}
-          style={{ opacity: i === index ? 1 : 0 }}
+          style={{ opacity: i === index ? 1 : 0, objectPosition: slide.focus }}
         />
       ))}
 
