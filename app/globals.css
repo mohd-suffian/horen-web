@@ -65,8 +65,22 @@ h1, h2, h3, h4 {
   animation: marquee 28s linear infinite;
 }
 
-.marquee-track:hover {
+.marquee-track:hover,
+.marquee-track:focus-within {
   animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .marquee-track .marquee-group[aria-hidden='true'] {
+    display: none;
+  }
 }
 
 /* Nav link teal slide-in underline */
