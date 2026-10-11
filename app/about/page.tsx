@@ -8,7 +8,7 @@ const beliefs = [
 
 const leaders = [
   {
-    name:  'Amir Shamodin',
+    name:  'Amir Shamsudin',
     role:  'Managing Director',
     quote: "Real change happens when training connects to the work people do every day — that's the only standard we hold ourselves to.",
     photo: 'amir.jpg',

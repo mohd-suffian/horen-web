@@ -2,7 +2,7 @@ const trainers = [
   {
     initials: 'AS',
     photo:    'amir.jpg',
-    name:     'Amir Shamodin',
+    name:     'Amir Shamsudin',
     role:     'Managing Director',
     quote:    '"Learning should change behaviour — not just tick a training box."',
   },
